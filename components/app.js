@@ -1,45 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
+import Home from './home';
+import CustomerAgeGender from './CustomerAgeGender';
+import Menu from './menu';
 
-export default class PfizerApp extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+// var PfizerApp = React.createClass({
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+//   getInitialState: function () {
+//     return {
+//       componentSelected: 'home'
+//     }
+//   },
+
+//   changeComponent: function (component) {
+//     this.setState({
+//       componentSelected: component
+//     })
+//   },
+
+//   renderComponent: function (component) {
+//     if (component == 'home') {
+//       return <Home changeComponent={this.changeComponent} />
+//     } else if (component == 'sample') {
+//       return <Sample changeComponent={this.changeComponent} />
+//     }
+//   },
+
+//   render() {
+//     return this.renderComponent(this.state.componentSelected);
+//   }
+// });
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   }
+// });
+
+const PfizerApp = StackNavigator({
+  Home: { screen: Home },
+  CustomerAgeGender: { screen: CustomerAgeGender },
+  Menu: { screen: Menu },
 });
+
+module.exports = PfizerApp;

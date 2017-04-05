@@ -20,6 +20,7 @@ class CustomerAgeGender extends Component {
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
 		return (
 			<Image source={require('../imageSrc/bg.jpg')} style={styles.flex1,{height: 895,width: 600}}>
 				<Text style={styles.flex1,styles.customer1}>CUSTOMER 1</Text>
@@ -63,7 +64,8 @@ class CustomerAgeGender extends Component {
 						</TouchableOpacity>
 			        </View>
 				</View>
-				<TouchableOpacity style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
+
+				<TouchableOpacity onPress={() => navigate('Menu')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
 				    <Text style={{fontWeight:'bold',color: '#fff'}}>NEXT</Text>
 				</TouchableOpacity>
 			</Image>
