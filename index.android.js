@@ -6,6 +6,5 @@
 
 import { AppRegistry } from 'react-native';
 import PfizerApp from './components/app';
-import CustomerAgeGender from './components/CustomerAgeGender';
 
-AppRegistry.registerComponent('PfizerApp', () => CustomerAgeGender);
+AppRegistry.registerComponent('PfizerApp', () => PfizerApp);
