@@ -5,7 +5,8 @@ import {
 	View,
 	TextInput,
 	Button,
-	TouchableOpacity
+	TouchableOpacity,
+	Image
 } from 'react-native';
 
 class CustomerAgeGender extends Component {
@@ -20,7 +21,7 @@ class CustomerAgeGender extends Component {
 
 	render() {
 		return (
-			<View style={styles.flex1}>
+			<Image source={require('../imageSrc/bg.jpg')} style={styles.flex1,{height: 895,width: 600}}>
 				<Text style={styles.flex1,styles.customer1}>CUSTOMER 1</Text>
 				<Text style={styles.flex1,styles.ageHeader}>AGE</Text>
 					<TextInput
@@ -62,10 +63,10 @@ class CustomerAgeGender extends Component {
 						</TouchableOpacity>
 			        </View>
 				</View>
-				<TouchableOpacity style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}}>
+				<TouchableOpacity style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
 				    <Text style={{fontWeight:'bold',color: '#fff'}}>NEXT</Text>
 				</TouchableOpacity>
-			</View>
+			</Image>
 		) 
 	}
 }
