@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 
+
 export default class PfizerApp extends Component {
   render() {
     return (
