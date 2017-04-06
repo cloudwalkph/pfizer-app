@@ -9,6 +9,7 @@ import { StackNavigator } from 'react-navigation';
 import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
 import Menu from './menu';
+import Cough from './Illness/Cough';
 
 // var PfizerApp = React.createClass({
 
@@ -47,6 +48,7 @@ const PfizerApp = StackNavigator({
   Home: { screen: Home },
   CustomerAgeGender: { screen: CustomerAgeGender },
   Menu: { screen: Menu },
+  healthCough: {screen: Cough}
 });
 
 module.exports = PfizerApp;

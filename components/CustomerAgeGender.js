@@ -22,7 +22,7 @@ class CustomerAgeGender extends Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-			<Image source={require('../imageSrc/bg.jpg')} style={styles.flex1,{height: 895,width: 600}}>
+			<Image source={require('../imageSrc/bg.jpg')} style={styles.flex1,{height: 830,width: 600}}>
 				<Text style={styles.flex1,styles.customer1}>CUSTOMER 1</Text>
 				<Text style={styles.flex1,styles.ageHeader}>AGE</Text>
 					<TextInput

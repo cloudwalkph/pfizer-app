@@ -29,7 +29,7 @@ var Menu = React.createClass({
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={this._onPressButton} style={styles.menu}>
+                <TouchableHighlight onPress={() => navigate('healthCough')} style={styles.menu}>
                     <View>
                         <Image
                             source={require('../assets/img/cardiogram.gif')}
