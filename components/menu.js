@@ -38,7 +38,7 @@ var Menu = React.createClass({
                 >
                     {menuItems.map(function (v, i) {
                         return (
-                            <View style={styles.rowItem}>
+                            <View style={styles.rowItem} key={i}>
                                 <TouchableOpacity
                                     key={i}
                                     onPress={() => navigate(v.name)}

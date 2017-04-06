@@ -24,14 +24,14 @@ var Health = React.createClass({
                                 <Text style={styles.menuLabel}>pain</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
+                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('viewport')}>
                             <View style={styles.menuItem}>
                                 <Text style={styles.menuLabel}>sore throat</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.rowItem}>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
+                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('cough')}>
                             <View style={styles.menuItem}>
                                 <Text style={styles.menuLabel}>cough</Text>
                             </View>

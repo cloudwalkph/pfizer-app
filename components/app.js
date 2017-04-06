@@ -10,6 +10,7 @@ import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
 import Menu from './menu';
 import Cough from './Illness/Cough';
+import Viewport from './Illness/Cough/Viewport';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -55,7 +56,9 @@ const PfizerApp = StackNavigator({
   menu: { screen: Menu },
   wellness: { screen: Wellness },
   health: { screen: Health },
-  pedia: { screen: Pedia }
+  pedia: { screen: Pedia },
+  cough: { screen: Cough },
+  viewport: { screen: Viewport }
 });
 
 module.exports = PfizerApp;
