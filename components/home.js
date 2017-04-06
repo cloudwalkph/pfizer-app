@@ -37,7 +37,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.beginBar}>
                     <Text style={{color: 'white'}}
-                        onPress={() => navigate('CustomerAgeGender')}
+                        onPress={() => navigate('customerAgeGender')}
                     >
                         Begin >
                     </Text>
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     },
     bg: {
         alignItems: 'center',
-        flex: 8,
+        flex: 10,
         justifyContent: 'center',
     },
     backgroundImage: {
         flex: 1,
-        resizeMode: 'cover',
+        resizeMode: 'stretch',
     },
     logoContainer: {
         flex: 1, 
