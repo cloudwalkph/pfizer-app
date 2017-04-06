@@ -65,7 +65,7 @@ class CustomerAgeGender extends Component {
 			        </View>
 				</View>
 
-				<TouchableOpacity onPress={() => navigate('Menu')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
+				<TouchableOpacity onPress={() => navigate('menu')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
 				    <Text style={{fontWeight:'bold',color: '#fff'}}>NEXT</Text>
 				</TouchableOpacity>
 			</Image>

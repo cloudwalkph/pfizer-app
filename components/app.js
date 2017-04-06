@@ -10,6 +10,10 @@ import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
 import Menu from './menu';
 
+import Wellness from './wellness';
+import Health from './health';
+import Pedia from './pedia';
+
 // var PfizerApp = React.createClass({
 
 //   getInitialState: function () {
@@ -44,9 +48,12 @@ import Menu from './menu';
 // });
 
 const PfizerApp = StackNavigator({
-  Home: { screen: Home },
-  CustomerAgeGender: { screen: CustomerAgeGender },
-  Menu: { screen: Menu },
+  home: { screen: Home },
+  customerAgeGender: { screen: CustomerAgeGender },
+  menu: { screen: Menu },
+  wellness: { screen: Wellness },
+  health: { screen: Health },
+  pedia: { screen: Pedia },
 });
 
 module.exports = PfizerApp;
