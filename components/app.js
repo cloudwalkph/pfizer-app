@@ -10,6 +10,7 @@ import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
 import Menu from './menu';
 import Cough from './Illness/Cough';
+import Viewport from './Illness/Cough/Viewport';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -79,6 +80,9 @@ const PfizerApp = StackNavigator(
 
     pain: { screen: Pain },
     painInteract: { screen: PainInteract },
+
+    cough: { screen: Cough },
+    viewport: { screen: Viewport }
   }
 );
 
