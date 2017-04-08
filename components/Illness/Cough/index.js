@@ -6,8 +6,13 @@ import {
 	TouchableOpacity,
 	Image,
 	Animated,
-	PanResponder
+	PanResponder,
+	Dimensions
 } from 'react-native';
+
+let coughBackImage = require('./img/cough_720.jpg');
+let coughBackImageOk = require('./img/cough-2_720.jpg');
+let { height, width } = Dimensions.get('window');
 
 class Cough extends Component {
 	constructor(props) {
@@ -17,7 +22,8 @@ class Cough extends Component {
 			bottle: 'none',
 			showDraggable   : true,
             dropZoneValues  : null,
-            pan             : new Animated.ValueXY()
+            pan             : new Animated.ValueXY(),
+            imageDynamic : coughBackImage
 		}
 
 		this.panResponder = PanResponder.create({
@@ -43,6 +49,10 @@ class Cough extends Component {
 
 	isDropZone(gesture){
         var dz = this.state.dropZoneValues;
+        if(!dz)
+        {
+        	return;
+        }
         return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
     }
 
@@ -64,16 +74,16 @@ class Cough extends Component {
 	}
 
 	render() {
-		
+		const { navigate } = this.props.navigation;
 
 		return(
-			<Image source={require('../../../assets/img/cough-bg_1024.jpg')} style={styles.flex1,{height: 830,width: 600}}>
+			<Image source={this.state.imageDynamic} style={styles.flex1,{height: height - 80,width: width}}>
 				<View style={styles.flex1,styles.flexDirectionRow}>
 					<View style={{width:120,marginRight: 10,marginLeft: 50}}>
 						<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{justifyContent: 'center',alignItems: 'center',padding:10,backgroundColor: '#25b5e9'}}>
 							<Image
 								style={{width:70,height:70}}
-								source={require('../../../assets/img/light_bulb.png')}
+								source={require('./img/light_bulb.png')}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -84,28 +94,16 @@ class Cough extends Component {
 						<Text>that causes coughing.</Text>
 					</View>
 				</View>
-				<View style={{flex:1}}>
-					<Image source={require('../../../assets/img/coughMan.png')} style={{height: 500,width: 500,alignSelf: 'center',marginTop:20}}/>
-					
-				</View>
-				<View style={{flex:1}}>
-					<Image source={require('../../../assets/img/cough_boarder_1024.png')} style={{height: 390,width: 600,marginTop:190}}/>
-					
-				</View>
-				<View style={{flex:1}}>
-					<Image source={require('../../../assets/img/lungs.png')} style={{height: 250,width: 250,alignSelf: 'center',marginTop: -50}}/>
-					
-				</View>
-				<Animated.View style={{opacity : this.animatedValue,flex:1,position: 'relative'}}>
-					<Text style={{color: '#fff',position:'absolute',bottom: 20,left:30}}>Drag the Robitussin bottle around the lungs to eliminate the phlegm</Text>
-					<Animated.View
-						{...this.panResponder.panHandlers}
-						style={this.state.pan.getLayout()}>
-						<Image source={require('../../../assets/img/robiBottle.png')} style={{height: 180,width: 70,position:'absolute',right:15}}/>
-					</Animated.View>
+				<Animated.View style={{opacity : this.animatedValue,position: 'absolute', bottom: 100, left: 30}}>
+					<Text style={{color: '#fff'}}>Drag the Robitussin bottle around the lungs to eliminate the phlegm</Text>
+				</Animated.View>
+				<Animated.View
+					{...this.panResponder.panHandlers}
+					style={[this.state.pan.getLayout(),{opacity : this.animatedValue,flex:1}]}>
+					<Image source={require('./img/light_bulb.png')} style={{height: 180,width: 70,position:'absolute',right:15,bottom: 60}}/>
 				</Animated.View>
 				<View style={{flex:1}}>
-					<TouchableOpacity style={{height: 60,justifyContent: 'center',alignItems: 'flex-end',marginTop: 50}} activeOpacity={0.7}>
+					<TouchableOpacity onPress={() => navigate('robiMedicine')} style={{height: 60,position: 'absolute', bottom: -10,right: 10}} activeOpacity={0.7}>
 					    <Text style={{fontWeight:'bold',color: '#fff',marginRight: 20}}>NEXT</Text>
 					</TouchableOpacity>
 				</View>
