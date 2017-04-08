@@ -2,7 +2,9 @@ var React = require('React');
 var {
     Dimensions,
     Image,
+    StyleSheet,
     Text,
+    TouchableOpacity,
     View,
     StyleSheet,
     Dimensions,
@@ -10,29 +12,71 @@ var {
     TouchableOpacity
 } = require('react-native');
 
-var { height, width } = Dimensions.get('window');
+var bg_menu = require('../../assets/img/bg_menu.jpg');
 
 var Wellness = React.createClass({
     render() {
-        const { navigate } = this.props.navigation;
-        return(
-            <View>
+        return (
+            <View style={styles.container}>
+                <Image
+                    source={bg_menu}
+                    style={styles.backgroundImage}
+                >
+                    <View style={styles.rowItem}>
+                        <TouchableOpacity
+                            style={{ flex: 1 }}
+                        >
+                            <View style={styles.menuItem}>
+                                <Text style={[styles.menuLabel, {fontSize: 20}]}>AGE-ADJUSTED</Text>
+                                <Text style={[styles.menuLabel]}>MULTIVITAMINS</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.rowItem}>
+                        <TouchableOpacity
+                            style={{ flex: 1 }}
+                        >
+                            <View style={styles.menuItem}>
+                                <Text style={[styles.menuLabel]}>STRESS, BEAUTY &amp; ENERGY</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.rowItem}>
+                        <TouchableOpacity
+                            style={{ flex: 1 }}
+                        >
+                            <View style={styles.menuItem}>
+                                <Text style={[styles.menuLabel]}>BONE HEALTH</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.rowItem}>
+                        <TouchableOpacity
+                            style={{ flex: 1 }}
+                        >
+                            <View style={styles.menuItem}>
+                                <Text style={[styles.menuLabel]}>CHAPPED LIPS</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </Image>
             </View>
         )
     }
 });
 
-let styles = StyleSheet.create({
+var { height, width } = Dimensions.get('window');
+
+var styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center'
     },
     backgroundImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: height - 80,
         width: width,
+        resizeMode: 'contain'
     },
     rowItem: {
         flex: 1,
@@ -47,19 +91,16 @@ let styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: height / 10,
-        width: width / 3,
-        resizeMode: 'stretch',
+        height: 50,
+        width: 50,
+        resizeMode: 'contain',
     },
     menuLabel: {
         color: 'white',
         textAlign: 'center',
+        fontWeight: 'bold',
         fontSize: 30
     }
-})
-
-Wellness.navigationOptions = {
-    title: 'Wellness',
-};
+});
 
 module.exports = Wellness;

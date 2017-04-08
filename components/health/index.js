@@ -55,26 +55,35 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center'
     },
     backgroundImage: {
-        flex: 1,
-        resizeMode: 'contain',
+        height: height - 80,
+        width: width,
+        resizeMode: 'contain'
     },
     rowItem: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     menuItem: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(149,149,149,0.5)',
+        alignItems: 'center',
+        backgroundColor: 'rgba(149,149,149,0.7)',
         margin: 5,
         borderRadius: 10,
     },
+    img: {
+        height: 50,
+        width: 50,
+        resizeMode: 'contain',
+    },
     menuLabel: {
         color: 'white',
-        fontSize: 30,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 30
     }
 });
 
