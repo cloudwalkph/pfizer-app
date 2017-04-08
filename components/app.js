@@ -11,6 +11,7 @@ import CustomerAgeGender from './CustomerAgeGender';
 import Menu from './menu';
 import Cough from './Illness/Cough';
 import Viewport from './Illness/Cough/Viewport';
+import RobitussinMedicine from './Illness/Cough/RobitussinMedicine';
 
 import Wellness from './wellness';
 import Health from './health';

@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Text,
     View,
+    TouchableOpacity
 } from 'react-native';
 
 export default class Home extends Component {
@@ -30,13 +31,9 @@ export default class Home extends Component {
                 <View style={styles.whiteBar}>
                     
                 </View>
-                <View style={styles.beginBar}>
-                    <Text style={{color: 'white'}}
-                        onPress={() => navigate('customerAgeGender')}
-                    >
-                        Begin >
-                    </Text>
-                </View>
+                <TouchableOpacity onPress={() => navigate('customerAgeGender')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
+                    <Text style={{fontWeight:'bold',color: '#fff'}}>BEGIN ></Text>
+                </TouchableOpacity>
             </View>
         );
     }
