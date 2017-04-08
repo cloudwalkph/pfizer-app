@@ -99,8 +99,8 @@ class Cough extends Component {
 				</Animated.View>
 				<Animated.View
 					{...this.panResponder.panHandlers}
-					style={[this.state.pan.getLayout(),{opacity : this.animatedValue,flex:1}]}>
-					<Image source={require('./img/robiDmBottle.png')} style={{height: 180,width: 70,position:'absolute',right:15,bottom: 60}}/>
+					style={[this.state.pan.getLayout(),{opacity : this.animatedValue,flex:5}]}>
+					<Image source={require('./img/robiDmBottle.png')} style={{height: 120,width: 50,position:'absolute',right:30,bottom: 1}}/>
 				</Animated.View>
 				<View style={{flex:1}}>
 					<TouchableOpacity onPress={() => navigate('robiMedicine')} style={{height: 60,position: 'absolute', bottom: -10,right: 10}} activeOpacity={0.7}>
