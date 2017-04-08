@@ -83,7 +83,8 @@ const PfizerApp = StackNavigator(
     painInteract: { screen: PainInteract },
 
     cough: { screen: Cough },
-    viewport: { screen: Viewport }
+    viewport: { screen: Viewport },
+    robiMedicine: { screen: RobitussinMedicine }
   }
 );
 
