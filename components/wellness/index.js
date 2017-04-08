@@ -1,5 +1,7 @@
 var React = require('React');
 var {
+    Dimensions,
+    Image,
     Text,
     View,
     StyleSheet,
@@ -15,7 +17,6 @@ var Wellness = React.createClass({
         const { navigate } = this.props.navigation;
         return(
             <View>
-                <Text>Wellness</Text>
             </View>
         )
     }
