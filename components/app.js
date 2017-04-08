@@ -68,7 +68,14 @@ const PfizerApp = StackNavigator(
       screen: CustomerAgeGender,
     },
     menu: { screen: Menu },
-    wellness: { screen: Wellness },
+    wellness: {
+      screen: Wellness,
+      navigationOptions: {
+        header: {
+          title: 'Wellness'
+        }
+      },
+    },
     health: {
       screen: Health,
       navigationOptions: {
@@ -77,7 +84,14 @@ const PfizerApp = StackNavigator(
         }
       },
     },
-    pedia: { screen: Pedia },
+    pedia: {
+      screen: Pedia,
+      navigationOptions: {
+        header: {
+          title: 'Pedia'
+        }
+      }
+    },
 
     pain: { screen: Pain },
     painInteract: { screen: PainInteract },

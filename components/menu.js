@@ -8,22 +8,25 @@ var {
     View,
 } = require('react-native');
 
-var bg_menu = require('../assets/img/bg_menu.jpg');
+var bg_menu = require('../assets/img/bg_menu.jpg'),
+    wellness_icon = require('../assets/img/wellness.png'),
+    health_icon = require('../assets/img/health.png'),
+    pedia_icon = require('../assets/img/pedia.png');
 
 const menuItems = [
     {
         name: 'wellness',
-        icon: require('../assets/img/wellness.png'),
+        icon: wellness_icon,
         label: 'Wellness'
     },
     {
         name: 'health',
-        icon: require('../assets/img/health.png'),
+        icon: health_icon,
         label: 'Health'
     },
     {
         name: 'pedia',
-        icon: require('../assets/img/pedia.png'),
+        icon: pedia_icon,
         label: 'Pedia'
     },
 ];
@@ -50,6 +53,7 @@ var Menu = React.createClass({
                                         <Image
                                             source={v.icon}
                                             style={styles.img}
+                                            onLoadStart={() => console.warn('load', v.icon)}
                                         >
                                         </Image>
                                         <Text style={styles.menuLabel}>{v.label}</Text>
@@ -86,10 +90,9 @@ var styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(149,149,149,0.5)',
+        backgroundColor: 'rgba(149,149,149,0.7)',
         margin: 5,
         borderRadius: 10,
-        width: width
     },
     img: {
         height: 50,
