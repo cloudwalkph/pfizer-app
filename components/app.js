@@ -15,6 +15,9 @@ import Wellness from './wellness';
 import Health from './health';
 import Pedia from './pedia';
 
+import Pain from './health/pain';
+import PainInteract from './health/pain/painInteract';
+
 // var PfizerApp = React.createClass({
 
 //   getInitialState: function () {
@@ -48,14 +51,35 @@ import Pedia from './pedia';
 //   }
 // });
 
-const PfizerApp = StackNavigator({
+const PfizerApp = StackNavigator(
+  {
 
-  home: { screen: Home },
-  customerAgeGender: { screen: CustomerAgeGender },
-  menu: { screen: Menu },
-  wellness: { screen: Wellness },
-  health: { screen: Health },
-  pedia: { screen: Pedia }
-});
+    home: {
+      screen: Home,
+      navigationOptions: {
+        header: {
+          visible: false
+        },
+      },
+    },
+    customerAgeGender: {
+      screen: CustomerAgeGender,
+    },
+    menu: { screen: Menu },
+    wellness: { screen: Wellness },
+    health: {
+      screen: Health,
+      navigationOptions: {
+        header: {
+          title: 'Health'
+        }
+      },
+    },
+    pedia: { screen: Pedia },
+
+    pain: { screen: Pain },
+    painInteract: { screen: PainInteract },
+  }
+);
 
 module.exports = PfizerApp;

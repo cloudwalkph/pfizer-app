@@ -8,6 +8,8 @@ var {
     View,
 } = require('react-native');
 
+var bg_menu = require('../assets/img/bg_menu.jpg');
+
 const menuItems = [
     {
         name: 'wellness',
@@ -33,12 +35,12 @@ var Menu = React.createClass({
         return (
             <View style={styles.container}>
                 <Image
-                    source={require('../assets/img/bg_menu.jpg')}
+                    source={bg_menu}
                     style={styles.backgroundImage}
                 >
                     {menuItems.map(function (v, i) {
                         return (
-                            <View style={styles.rowItem}>
+                            <View key={i} style={styles.rowItem}>
                                 <TouchableOpacity
                                     key={i}
                                     onPress={() => navigate(v.name)}
@@ -74,11 +76,11 @@ var styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: width,
     },
     rowItem: {
         flex: 1,
         flexDirection: 'row',
+        width: width,
     },
     menuItem: {
         flex: 1,
@@ -87,11 +89,12 @@ var styles = StyleSheet.create({
         backgroundColor: 'rgba(149,149,149,0.5)',
         margin: 5,
         borderRadius: 10,
+        width: width
     },
     img: {
-        height: height / 10,
-        width: width / 3,
-        resizeMode: 'stretch',
+        height: 50,
+        width: 50,
+        resizeMode: 'contain',
     },
     menuLabel: {
         color: 'white',

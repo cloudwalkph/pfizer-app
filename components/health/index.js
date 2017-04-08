@@ -8,6 +8,8 @@ var {
     View,
 } = require('react-native');
 
+var bg_health = require('../../assets/img/bg_health.jpg');
+
 var Health = React.createClass({
 
     render() {
@@ -15,39 +17,31 @@ var Health = React.createClass({
         return (
             <View style={styles.container}>
                 <Image
-                    source={require('../../assets/img/bg_menu.jpg')}
+                    source={bg_health}
                     style={styles.backgroundImage}
                 >
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('pain')}>
-                            <View style={styles.menuItem}>
-                                <Text style={styles.menuLabel}>pain</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
-                            <View style={styles.menuItem}>
-                                <Text style={styles.menuLabel}>sore throat</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
-                            <View style={styles.menuItem}>
-                                <Text style={styles.menuLabel}>cough</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
-                            <View style={styles.menuItem}>
-                                <Text style={styles.menuLabel}>cold</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('soreThroat')}>
-                            <View style={styles.menuItem}>
-                                <Text style={styles.menuLabel}>flu / fever</Text>
-                            </View>
-                        </TouchableOpacity>
+                    <View style={styles.container}>
+                        <View style={styles.rowItem}>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('pain')}>
+                                <View style={styles.menuItem}>
+                                    <Text style={styles.menuLabel}>pain</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rowItem}>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('cough')}>
+                                <View style={styles.menuItem}>
+                                    <Text style={styles.menuLabel}>cough</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rowItem}>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('flu')}>
+                                <View style={styles.menuItem}>
+                                    <Text style={styles.menuLabel}>flu / fever</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </Image>
             </View>
@@ -64,9 +58,7 @@ var styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width
+        resizeMode: 'contain',
     },
     rowItem: {
         flex: 1,
@@ -85,9 +77,5 @@ var styles = StyleSheet.create({
         fontSize: 30,
     }
 });
-
-Health.navigationOptions = {
-    title: 'Health',
-};
 
 module.exports = Health;

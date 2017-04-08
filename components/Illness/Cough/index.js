@@ -17,7 +17,7 @@ class Cough extends Component {
 						<TouchableOpacity activeOpacity={0.7}>
 							<Image
 								style={styles.button}
-								source={require('../../../assets/img/cardiogram.png')}
+								source={require('../../../assets/img/health.png')}
 							/>
 						</TouchableOpacity>
 					</View>

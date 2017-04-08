@@ -8,11 +8,6 @@ import {
 } from 'react-native';
 
 export default class Home extends Component {
-    static navigationOptions = {
-        header: {
-            visible: false
-        },
-    };
 
     render() {
         const { navigate } = this.props.navigation;
