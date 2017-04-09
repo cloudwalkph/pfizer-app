@@ -7,8 +7,11 @@ import {
 	Image,
 	Dimensions
 } from 'react-native';
+import Swiper from 'react-native-swiper';
 
 let robiBackImage = require('./img/robitussin_720.jpg');
+let robi2 = require('./img/Robitussin-2.jpg');
+let robi3 = require('./img/Robitussin-3.jpg');
 let { height, width } = Dimensions.get('window');
 
 class RobitussinMedicine extends Component {
@@ -18,11 +21,23 @@ class RobitussinMedicine extends Component {
 
 	render() {
 		return(
-			<Image source={robiBackImage} style={styles.flex1,{height: height - 80,width: 600}}>
-				<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
-					<Text style={styles.recommendText}>RECOMMEND</Text>
-				</TouchableOpacity>
-			</Image>
+			<Swiper style={styles.wrapper} height={height} horizontal={true}>
+				<Image source={robiBackImage} style={styles.flex1,{height: height - 80,width: width}}>
+					<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
+						<Text style={styles.recommendText}>RECOMMEND</Text>
+					</TouchableOpacity>
+				</Image>
+				<Image source={robi2} style={styles.flex1,{height: height - 80,width: width}}>
+					<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
+						<Text style={styles.recommendText}>RECOMMEND</Text>
+					</TouchableOpacity>
+				</Image>
+				<Image source={robi3} style={styles.flex1,{height: height - 80,width: width}}>
+					<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
+						<Text style={styles.recommendText}>RECOMMEND</Text>
+					</TouchableOpacity>
+				</Image>
+			</Swiper>
 		)
 	}
 }

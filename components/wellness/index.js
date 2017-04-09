@@ -16,6 +16,8 @@ var bg_menu = require('../../assets/img/bg_menu.jpg');
 
 var Wellness = React.createClass({
     render() {
+        const { navigate } = this.props.navigation;
+        
         return (
             <View style={styles.container}>
                 <Image

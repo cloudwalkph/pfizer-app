@@ -12,6 +12,8 @@ import Menu from './menu';
 import Cough from './Illness/Cough';
 import Viewport from './Illness/Cough/Viewport';
 import RobitussinMedicine from './Illness/Cough/RobitussinMedicine';
+import ChapStick from './wellness/ChapStick';
+import RecommendChapstick from './wellness/RecommendChapstick';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -98,7 +100,9 @@ const PfizerApp = StackNavigator(
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },
-    robiMedicine: { screen: RobitussinMedicine }
+    robiMedicine: { screen: RobitussinMedicine },
+    ChapStick: { screen: ChapStick },
+    RecommendChapstick: { screen: RecommendChapstick }
   }
 );
 

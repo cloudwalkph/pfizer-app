@@ -77,6 +77,7 @@ class Cough extends Component {
 		const { navigate } = this.props.navigation;
 
 		return(
+			
 			<Image source={this.state.imageDynamic} style={[styles.flex1,{height: height - 80,width: width}]}>
 				<View style={[styles.flex1,styles.flexDirectionRow]}>
 					<View style={{width:120,marginRight: 10,marginLeft: 50}}>
