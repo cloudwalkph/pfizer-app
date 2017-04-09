@@ -94,7 +94,7 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: height / 8,
+        height: height / 6,
         resizeMode: 'contain',
     },
     menuLabel: {
@@ -103,6 +103,6 @@ var styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold'
     }
-})
+});
 
 module.exports = Menu;

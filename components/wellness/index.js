@@ -13,7 +13,7 @@ var {
 } = require('react-native');
 
 var bg_menu = require('../../assets/img/bg_menu.jpg');
-var age_adjusted_multivitamins = require('../../assets/img/age_adjusted_multivitamins.png');
+var multivitamins = require('../../assets/img/multivitamins.png');
 var stress_beauty_energy = require('../../assets/img/stress_beauty_energy.png');
 var bone_health = require('../../assets/img/bone_health.png');
 var chapped_lips = require('../../assets/img/chapped_lips.png');
@@ -33,7 +33,7 @@ var Wellness = React.createClass({
                         >
                             <View style={styles.menuItem}>
                                 <Image 
-                                    source={age_adjusted_multivitamins}
+                                    source={multivitamins}
                                     style={styles.img}
                                 >
                                 </Image>
@@ -117,10 +117,8 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: height / 10,
-        width: width / 10,
+        height: height / 8,
         resizeMode: 'contain',
-        margin: 10
     },
     menuLabel: {
         color: 'white',

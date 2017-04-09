@@ -9,6 +9,10 @@ var {
 } = require('react-native');
 
 var bg_menu = require('../../assets/img/bg_menu.jpg');
+var multivitamins = require('../../assets/img/multivitamins.png');
+var cough_icon = require('../../assets/img/cough_icon.png');
+var colds_icon = require('../../assets/img/colds_icon.png');
+var pedia = require('../../assets/img/pedia.png');
 
 var Pedia = React.createClass({
     render() {
@@ -23,7 +27,12 @@ var Pedia = React.createClass({
                             style={{ flex: 1 }}
                         >
                             <View style={styles.menuItem}>
-                                <Text style={[styles.menuLabel, {fontSize: 20}]}>CHILDREN&rsquo;S</Text>
+                                <Image
+                                    source={multivitamins}
+                                    style={styles.img}
+                                >
+                                </Image>
+                                <Text style={[styles.menuLabel, { fontSize: 20 }]}>CHILDREN&rsquo;S</Text>
                                 <Text style={[styles.menuLabel]}>MULTIVITAMINS</Text>
                             </View>
                         </TouchableOpacity>
@@ -33,6 +42,11 @@ var Pedia = React.createClass({
                             style={{ flex: 1 }}
                         >
                             <View style={styles.menuItem}>
+                                <Image
+                                    source={cough_icon}
+                                    style={styles.img}
+                                >
+                                </Image>
                                 <Text style={[styles.menuLabel]}>COUGH</Text>
                             </View>
                         </TouchableOpacity>
@@ -42,6 +56,11 @@ var Pedia = React.createClass({
                             style={{ flex: 1 }}
                         >
                             <View style={styles.menuItem}>
+                                <Image
+                                    source={colds_icon}
+                                    style={styles.img}
+                                >
+                                </Image>
                                 <Text style={[styles.menuLabel]}>COLDS &amp; ALLERGIES</Text>
                             </View>
                         </TouchableOpacity>
@@ -51,8 +70,13 @@ var Pedia = React.createClass({
                             style={{ flex: 1 }}
                         >
                             <View style={styles.menuItem}>
+                                <Image
+                                    source={pedia}
+                                    style={styles.img}
+                                >
+                                </Image>
                                 <Text style={[styles.menuLabel]}>BODY &amp; BRAIN</Text>
-                                <Text style={[styles.menuLabel, {fontSize: 20}]}>DEVELOPMENT</Text>
+                                <Text style={[styles.menuLabel, { fontSize: 20 }]}>DEVELOPMENT</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -89,10 +113,8 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: height / 10,
-        width: width / 10,
+        height: height / 8,
         resizeMode: 'contain',
-        margin: 10
     },
     menuLabel: {
         color: 'white',
