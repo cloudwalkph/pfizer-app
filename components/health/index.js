@@ -24,21 +24,21 @@ var Health = React.createClass({
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('pain')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>pain</Text>
+                                    <Text style={styles.menuLabel}>{'pain'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('cough')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>cough</Text>
+                                    <Text style={styles.menuLabel}>{'cough'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('flu')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>flu / fever</Text>
+                                    <Text style={styles.menuLabel}>{'flu / fever'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -54,17 +54,18 @@ var { height, width } = Dimensions.get('window');
 var styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
     },
     backgroundImage: {
-        height: height - 80,
-        width: width,
-        resizeMode: 'contain'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     rowItem: {
         flex: 1,
         flexDirection: 'row',
+        width: width,
     },
     menuItem: {
         flex: 1,
@@ -75,15 +76,16 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: 50,
-        width: 50,
+        height: height / 10,
+        width: width / 10,
         resizeMode: 'contain',
+        margin: 10
     },
     menuLabel: {
         color: 'white',
         textAlign: 'center',
+        fontSize: 30,
         fontWeight: 'bold',
-        fontSize: 30
     }
 });
 

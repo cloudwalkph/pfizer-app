@@ -67,17 +67,18 @@ var { height, width } = Dimensions.get('window');
 var styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
     },
     backgroundImage: {
-        height: height - 80,
-        width: width,
-        resizeMode: 'contain'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     rowItem: {
         flex: 1,
         flexDirection: 'row',
+        width: width,
     },
     menuItem: {
         flex: 1,
@@ -88,15 +89,16 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: 50,
-        width: 50,
+        height: height / 10,
+        width: width / 10,
         resizeMode: 'contain',
+        margin: 10
     },
     menuLabel: {
         color: 'white',
         textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
+        fontWeight: 'bold'
     }
 });
 

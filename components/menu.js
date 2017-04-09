@@ -53,10 +53,9 @@ var Menu = React.createClass({
                                         <Image
                                             source={v.icon}
                                             style={styles.img}
-                                            onLoadStart={() => console.warn('load', v.icon)}
                                         >
                                         </Image>
-                                        <Text style={styles.menuLabel}>{v.label}</Text>
+                                        <Text style={styles.menuLabel}>{v.label.toUpperCase()}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -95,14 +94,14 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: 50,
-        width: 50,
+        height: height / 8,
         resizeMode: 'contain',
     },
     menuLabel: {
         color: 'white',
         textAlign: 'center',
-        fontSize: 30
+        fontSize: 40,
+        fontWeight: 'bold'
     }
 })
 
