@@ -23,6 +23,9 @@ import Pedia from './pedia';
 
 import Pain from './health/pain';
 import PainInteract from './health/pain/painInteract';
+import PainRecommends from './health/pain/recommends';
+
+import Advil from './advil';
 
 // var PfizerApp = React.createClass({
 
@@ -99,6 +102,9 @@ const PfizerApp = StackNavigator(
 
     pain: { screen: Pain },
     painInteract: { screen: PainInteract },
+    painRecommends: { screen: PainRecommends },
+    
+    advil: { screen: Advil },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },

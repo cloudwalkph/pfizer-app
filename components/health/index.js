@@ -9,6 +9,9 @@ var {
 } = require('react-native');
 
 var bg_health = require('../../assets/img/bg_health.jpg');
+var pain_icon = require('../../assets/img/pain_icon.png');
+var cough_icon = require('../../assets/img/cough_icon.png');
+var flu_icon = require('../../assets/img/flu_icon.png');
 
 var Health = React.createClass({
 
@@ -24,21 +27,36 @@ var Health = React.createClass({
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('pain')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>pain</Text>
+                                    <Image
+                                        source={pain_icon}
+                                        style={styles.img}
+                                    >
+                                    </Image>
+                                    <Text style={styles.menuLabel}>{'pain'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('cough')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>cough</Text>
+                                    <Image
+                                        source={cough_icon}
+                                        style={styles.img}
+                                    >
+                                    </Image>
+                                    <Text style={styles.menuLabel}>{'cough'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.rowItem}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => navigate('flu')}>
                                 <View style={styles.menuItem}>
-                                    <Text style={styles.menuLabel}>flu / fever</Text>
+                                    <Image
+                                        source={flu_icon}
+                                        style={styles.img}
+                                    >
+                                    </Image>
+                                    <Text style={styles.menuLabel}>{'flu / fever'.toUpperCase()}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -54,17 +72,18 @@ var { height, width } = Dimensions.get('window');
 var styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
     },
     backgroundImage: {
-        height: height - 80,
-        width: width,
-        resizeMode: 'contain'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     rowItem: {
         flex: 1,
         flexDirection: 'row',
+        width: width,
     },
     menuItem: {
         flex: 1,
@@ -75,15 +94,14 @@ var styles = StyleSheet.create({
         borderRadius: 10,
     },
     img: {
-        height: 50,
-        width: 50,
+        height: height / 6,
         resizeMode: 'contain',
     },
     menuLabel: {
         color: 'white',
         textAlign: 'center',
+        fontSize: 30,
         fontWeight: 'bold',
-        fontSize: 30
     }
 });
 

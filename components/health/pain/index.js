@@ -31,7 +31,8 @@ var Pain = React.createClass({
                             <Image
                                 source={require('../../../assets/img/blue_button.png')}
                                 style={styles.blueButton}
-                            />
+                            >
+                            </Image>
                         </TouchableOpacity>
                     </View>
                 </Image>
