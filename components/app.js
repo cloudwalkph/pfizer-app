@@ -16,6 +16,9 @@ import ChapStick from './wellness/ChapStick';
 import RecommendChapstick from './wellness/RecommendChapstick';
 import Stresstabs from './wellness/stress_beauty_energy/Stresstabs';
 import RecommendStresstabs from './wellness/stress_beauty_energy/RecommendStresstabs';
+import Centrum from './wellness/multivitamins/Centrum';
+import CentrumHealthy from './wellness/multivitamins/Centrum/CentrumHealthy';
+import RecommendedCentrum from './wellness/multivitamins/Centrum/RecommendedCentrum';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -112,7 +115,10 @@ const PfizerApp = StackNavigator(
     ChapStick: { screen: ChapStick },
     RecommendChapstick: { screen: RecommendChapstick },
     Stresstabs: { screen: Stresstabs },
-    RecommendStresstabs: { screen: RecommendStresstabs }
+    RecommendStresstabs: { screen: RecommendStresstabs },
+    Centrum: { screen: Centrum },
+    CentrumHealthy: { screen: CentrumHealthy },
+    RecommendedCentrum: { screen: RecommendedCentrum }
   }
 );
 

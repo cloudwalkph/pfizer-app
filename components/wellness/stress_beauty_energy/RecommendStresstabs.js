@@ -17,9 +17,13 @@ class RecommendStresstabs extends Component {
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
+
 		return (
 			<Image source={imgBackground} style={styles.flex1,{height: height - 80,width: width}}>
-				<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
+				<TouchableOpacity 
+					onPress={() => navigate('ChapStick')}
+					style={styles.recommendButton} activeOpacity={0.7}>
 					<Text style={styles.recommendText}>RECOMMEND</Text>
 				</TouchableOpacity>
 			</Image>

@@ -39,9 +39,9 @@ class Stresstabs extends Component {
 
 		return(
 			<Image source={this.state.imgDynamic} style={[styles.flex1,{height: height - 80,width: width}]}>
-				<Image source={pagod} style={{position: 'absolute',right: 1,opacity:this.state.imgOpacity}}></Image>
-				<Image source={puyat} style={{position: 'absolute',left: 1,opacity:this.state.imgOpacity}}></Image>
-				<Image source={pressure} style={{position: 'absolute',left: 20,top: 200,opacity:this.state.imgOpacity}}></Image>
+				<Image source={pagod} style={{width: 220,height: 150,position: 'absolute',right: 50,top: 10,opacity:this.state.imgOpacity}}></Image>
+				<Image source={puyat} style={{width: 220,height: 150,position: 'absolute',left: 50,opacity:this.state.imgOpacity}}></Image>
+				<Image source={pressure} style={{width: 220,height: 170,position: 'absolute',left: 60,top: 200,opacity:this.state.imgOpacity}}></Image>
 				<View style={[styles.flex1,styles.flexDirectionRow,{top: 400}]}>
 					<View style={{width:120,marginRight: 10,marginLeft: 100}}>
 						<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{justifyContent: 'center',alignItems: 'center',padding:10,backgroundColor: '#25b5e9'}}>
