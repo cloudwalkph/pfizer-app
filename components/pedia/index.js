@@ -8,7 +8,7 @@ var {
     View,
 } = require('react-native');
 
-var bg_menu = require('../../assets/img/bg_menu.jpg');
+var bg = require('../../assets/img/bg_pedia.jpg');
 var multivitamins = require('../../assets/img/multivitamins.png');
 var cough_icon = require('../../assets/img/cough_icon.png');
 var colds_icon = require('../../assets/img/colds_icon.png');
@@ -16,10 +16,11 @@ var pedia = require('../../assets/img/pedia.png');
 
 var Pedia = React.createClass({
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Image
-                    source={bg_menu}
+                    source={bg}
                     style={styles.backgroundImage}
                 >
                     <View style={styles.rowItem}>
@@ -40,6 +41,7 @@ var Pedia = React.createClass({
                     <View style={styles.rowItem}>
                         <TouchableOpacity
                             style={{ flex: 1 }}
+                            onPress={() => navigate('coughKids')}
                         >
                             <View style={styles.menuItem}>
                                 <Image

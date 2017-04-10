@@ -12,7 +12,7 @@ var {
     TouchableOpacity
 } = require('react-native');
 
-var bg_menu = require('../../assets/img/bg_menu.jpg');
+var bg_menu = require('../../assets/img/bg.jpg');
 var multivitamins = require('../../assets/img/multivitamins.png');
 var stress_beauty_energy = require('../../assets/img/stress_beauty_energy.png');
 var bone_health = require('../../assets/img/bone_health.png');

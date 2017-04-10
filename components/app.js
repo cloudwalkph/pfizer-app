@@ -28,6 +28,10 @@ import Pain from './health/pain';
 import PainInteract from './health/pain/painInteract';
 import PainRecommends from './health/pain/recommends';
 
+import CoughKids from './pedia/cough';
+import CoughKidsRecommend from './pedia/cough/recommend';
+import Robikids from './pedia/cough/robikids';
+
 import Advil from './advil';
 
 // var PfizerApp = React.createClass({
@@ -108,6 +112,10 @@ const PfizerApp = StackNavigator(
     painRecommends: { screen: PainRecommends },
     
     advil: { screen: Advil },
+
+    coughKids: { screen: CoughKids },
+    coughKidsRecommend: { screen: CoughKidsRecommend },
+    robikids: { screen: Robikids },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },
