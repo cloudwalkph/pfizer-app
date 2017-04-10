@@ -14,6 +14,8 @@ import Viewport from './Illness/Cough/Viewport';
 import RobitussinMedicine from './Illness/Cough/RobitussinMedicine';
 import ChapStick from './wellness/ChapStick';
 import RecommendChapstick from './wellness/RecommendChapstick';
+import Stresstabs from './wellness/stress_beauty_energy/Stresstabs';
+import RecommendStresstabs from './wellness/stress_beauty_energy/RecommendStresstabs';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -102,7 +104,9 @@ const PfizerApp = StackNavigator(
     viewport: { screen: Viewport },
     robiMedicine: { screen: RobitussinMedicine },
     ChapStick: { screen: ChapStick },
-    RecommendChapstick: { screen: RecommendChapstick }
+    RecommendChapstick: { screen: RecommendChapstick },
+    Stresstabs: { screen: Stresstabs },
+    RecommendStresstabs: { screen: RecommendStresstabs }
   }
 );
 

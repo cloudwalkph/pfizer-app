@@ -33,19 +33,19 @@ class ChapStick extends Component {
 		const { navigate } = this.props.navigation;
 		return(
 			<Image source={this.state.imgDynamic} style={[styles.flex1,{height: height - 80,width: width}]}>
-				<Image source={this.state.lipsCrackImg} style={{position:'absolute',top: 170,alignSelf:'center',width: 510,height: 210}}></Image>
-				<View style={{position: 'absolute',width: width - 80,alignSelf: 'center',top: 430}}>
+				<Image source={this.state.lipsCrackImg} style={{top: 170,alignSelf:'center',width: 510,height: 210}}></Image>
+				<View style={{width: width - 80,alignSelf: 'center',top: 200}}>
 					<Text style={{fontWeight: 'bold',textAlign: 'center',fontSize: 17}}>Exposure to the sun and weather takes moisture away from your lips causing it to dry.</Text>
 					<Text style={{fontWeight: 'bold',textAlign: 'center',fontSize: 17}}>Dryness leads to chapped lips</Text>
 				</View>
-				<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{alignSelf: 'center',backgroundColor: '#25b5e9',width: 100,height: 100,postition: 'absolute',top: 550}}>
+				<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{alignSelf: 'center',backgroundColor: '#25b5e9',width: 100,height: 100,postition: 'absolute',top: 300}}>
 					<Image
 						style={{width:70,height:70,alignSelf: 'center',marginTop: 14}}
 						source={bulbButton}
 					/>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={() => navigate('RecommendChapstick')} style={{height: 60,backgroundColor: 'red',position: 'absolute',bottom: 1,alignItems: 'center',justifyContent: 'center',width: width}} activeOpacity={0.7}>
-				    <Text style={{fontWeight:'bold',color: '#fff',marginRight: 20}}>NEXT</Text>
+				<TouchableOpacity onPress={() => navigate('RecommendChapstick')} style={{height: 60,backgroundColor: 'red',justifyContent: 'center',bottom: -400,width: width}} activeOpacity={0.7}>
+				    <Text style={{fontWeight:'bold',color: '#fff',marginRight: 20, textAlign: 'center'}}>NEXT</Text>
 				</TouchableOpacity>
 			</Image>
 		)
