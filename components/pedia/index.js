@@ -1,89 +1,77 @@
 var React = require('React');
 var {
+    Animated,
     Dimensions,
     Image,
     StyleSheet,
     Text,
+    TouchableWithoutFeedback,
     TouchableOpacity,
     View,
 } = require('react-native');
-
-var bg = require('../../assets/img/bg_pedia.jpg');
-var multivitamins = require('../../assets/img/multivitamins.png');
-var cough_icon = require('../../assets/img/cough_icon.png');
-var colds_icon = require('../../assets/img/colds_icon.png');
-var pedia = require('../../assets/img/pedia.png');
+var { MenuItem } = require('../commons/menuItem');
 
 var Pedia = React.createClass({
-    render() {
+
+    getDefaultProps() {
+        return {
+            pedia: [
+                {
+                    name: '',
+                    icon: require('../../assets/img/multivitamins.png'),
+                    label: 'appetite & immunity'.toUpperCase()
+                },
+                {
+                    name: 'coughKids',
+                    icon: require('../../assets/img/cough_icon.png'),
+                    label: 'cough relief'.toUpperCase()
+                },
+                {
+                    name: '',
+                    icon: require('../../assets/img/colds_icon.png'),
+                    label: 'cold relief'.toUpperCase()
+                },
+                {
+                    name: '',
+                    icon: require('../../assets/img/pedia.png'),
+                    label: 'anti-anemia'.toUpperCase()
+                },
+                {
+                    name: '',
+                    icon: require('../../assets/img/flu_icon.png'),
+                    label: 'fever & pain relief'.toUpperCase()
+                },
+            ]
+        }
+    },
+
+    _onPress(val) {
         const { navigate } = this.props.navigation;
+        navigate(val);
+    },
+
+    render() {
         return (
             <View style={styles.container}>
                 <Image
-                    source={bg}
+                    source={require('../../assets/img/bg_pedia.jpg')}
                     style={styles.backgroundImage}
                 >
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image
-                                    source={multivitamins}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel, { fontSize: 20 }]}>CHILDREN&rsquo;S</Text>
-                                <Text style={[styles.menuLabel]}>MULTIVITAMINS</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                            onPress={() => navigate('coughKids')}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image
-                                    source={cough_icon}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>COUGH</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image
-                                    source={colds_icon}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>COLDS &amp; ALLERGIES</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image
-                                    source={pedia}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>BODY &amp; BRAIN</Text>
-                                <Text style={[styles.menuLabel, { fontSize: 20 }]}>DEVELOPMENT</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+
+                    {this.props.pedia.map(function (v, i) {
+                        return (
+                            <MenuItem 
+                                key={i}
+                                onPress={this._onPress}
+                                nav={v.nav}
+                                icon={v.icon}
+                                label={v.label}
+                            />
+                        )
+                    }.bind(this))}
+
                 </Image>
-            </View>
+            </View >
         )
     }
 });
@@ -98,32 +86,9 @@ var styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    rowItem: {
-        flex: 1,
-        flexDirection: 'row',
+        height: height - 80,
         width: width,
     },
-    menuItem: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(149,149,149,0.7)',
-        margin: 5,
-        borderRadius: 10,
-    },
-    img: {
-        height: height / 8,
-        resizeMode: 'contain',
-    },
-    menuLabel: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 30,
-        fontWeight: 'bold'
-    }
 });
 
 module.exports = Pedia;

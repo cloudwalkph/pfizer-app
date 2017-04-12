@@ -1,10 +1,14 @@
 import React from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
+
+import { BackArrow } from './commons/back_arrow';
+import { BurgerMenu } from './commons/burgerMenu';
 
 import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
@@ -69,7 +73,6 @@ import Advil from './advil';
 
 const PfizerApp = StackNavigator(
   {
-
     home: {
       screen: Home,
       navigationOptions: {
@@ -80,8 +83,28 @@ const PfizerApp = StackNavigator(
     },
     customerAgeGender: {
       screen: CustomerAgeGender,
+      navigationOptions: {
+        header: {
+          left: <BackArrow />,
+          right: <BurgerMenu />,
+          tintColor: 'white',
+          style: {
+            backgroundColor: '#25b5e9'
+          }
+        }
+      }
     },
-    menu: { screen: Menu },
+    menu: {
+      screen: Menu,
+      navigationOptions: {
+        header: {
+          tintColor: 'white',
+          style: {
+            backgroundColor: '#25b5e9'
+          }
+        }
+      }
+    },
     wellness: {
       screen: Wellness,
       navigationOptions: {
@@ -110,7 +133,7 @@ const PfizerApp = StackNavigator(
     pain: { screen: Pain },
     painInteract: { screen: PainInteract },
     painRecommends: { screen: PainRecommends },
-    
+
     advil: { screen: Advil },
 
     coughKids: { screen: CoughKids },
@@ -127,6 +150,8 @@ const PfizerApp = StackNavigator(
     Centrum: { screen: Centrum },
     CentrumHealthy: { screen: CentrumHealthy },
     RecommendedCentrum: { screen: RecommendedCentrum }
+  }, {
+
   }
 );
 
