@@ -8,6 +8,7 @@ var {
 } = require('react-native');
 
 const check = require('../../assets/img/check.png');
+const green_button = require('../../assets/img/green_button.png');
 const next = require('../../assets/img/next.png');
 
 var Recommend = React.createClass({
@@ -16,11 +17,18 @@ var Recommend = React.createClass({
         return (
             <View style={styles.container}>
                 <Image
-                    source={check}
-                    style={styles.check}
+                    source={green_button}
+                    style={styles.recommend_button}
                 >
+                    <View style={styles.flexRow}>
+                        <Image
+                            source={check}
+                            style={styles.check}
+                        >
+                        </Image>
+                        <Text style={styles.label}>{'recommend'.toUpperCase()}</Text>
+                    </View>
                 </Image>
-                <Text style={styles.label}>{'recommend'.toUpperCase()}</Text>
             </View>
         )
     }
@@ -46,17 +54,19 @@ var { height, width } = Dimensions.get('window');
 
 var styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        alignSelf: 'center',
-        backgroundColor: 'rgba(149,149,149,1)',
-        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    flexRow: {
         flexDirection: 'row',
-        height: 60,
-        padding: 10,
-        width: 250,
+        alignItems: 'center'
+    },
+    recommend_button: {
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     check: {
-        flex: 1,
+        flex: 2,
         resizeMode: 'contain'
     },
     label: {
