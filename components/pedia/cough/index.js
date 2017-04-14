@@ -28,7 +28,7 @@ var CoughKids = React.createClass({
     _previousLeft: 0,
     _previousTop: 0,
     _circleStyles: {},
-    box: (null : ?{ setNativeProps(props: Object): void }),
+    box: null,
 
     getInitialState() {
         return {
@@ -36,6 +36,14 @@ var CoughKids = React.createClass({
             instruction: false,
             next: false,
             robibox: false,
+            phlegm1: true,
+            phlegm2: true,
+            phlegm3: true,
+            phlegm4: true,
+            phlegm1Layout: null,
+            phlegm2Layout: null,
+            phlegm3Layout: null,
+            phlegm4Layout: null,
         }
     },
 
@@ -49,7 +57,7 @@ var CoughKids = React.createClass({
             onPanResponderTerminate: this._handlePanResponderEnd,
         });
         this._previousLeft = 500;
-        this._previousTop = 450;
+        this._previousTop = 600;
         this._robiboxStyles = {
             style: {
                 left: this._previousLeft,
@@ -89,28 +97,88 @@ var CoughKids = React.createClass({
         this.box && this.box.setNativeProps(this._robiboxStyles);
     },
 
-    _handleStartShouldSetPanResponder: function (e: Object, gestureState: Object): boolean {
+    _handleStartShouldSetPanResponder: function (e, gestureState) {
         // Should we become active when the user presses down on the circle?
         return true;
     },
 
-    _handleMoveShouldSetPanResponder: function (e: Object, gestureState: Object): boolean {
+    _handleMoveShouldSetPanResponder: function (e, gestureState) {
         // Should we become active when the user moves a touch over the circle?
         return true;
     },
 
-    _handlePanResponderGrant: function (e: Object, gestureState: Object) {
+    _handlePanResponderGrant: function (e, gestureState) {
         // this._highlight();
     },
-    _handlePanResponderMove: function (e: Object, gestureState: Object) {
+    _handlePanResponderMove: function (e, gestureState) {
         this._robiboxStyles.style.left = this._previousLeft + gestureState.dx;
         this._robiboxStyles.style.top = this._previousTop + gestureState.dy;
         this._updateNativeStyles();
+
+        if (this.isPhlegm1(gestureState)) {
+            this.setState({
+                phlegm1: false
+            })
+        } else if (this.isPhlegm2(gestureState)) {
+            this.setState({
+                phlegm2: false
+            })
+        } else if (this.isPhlegm3(gestureState)) {
+            this.setState({
+                phlegm3: false
+            })
+        } else if (this.isPhlegm4(gestureState)) {
+            this.setState({
+                phlegm4: false
+            })
+        } else {
+            this.setState({
+                next: true
+            })
+        }
     },
-    _handlePanResponderEnd: function (e: Object, gestureState: Object) {
+    _handlePanResponderEnd: function (e, gestureState) {
         // this._unHighlight();
         this._previousLeft += gestureState.dx;
         this._previousTop += gestureState.dy;
+    },
+
+    setPhlegm1Layout(event) {
+        this.setState({
+            phlegm1Layout: event.nativeEvent.layout
+        })
+    },
+    setPhlegm2Layout(event) {
+        this.setState({
+            phlegm2Layout: event.nativeEvent.layout
+        })
+    },
+    setPhlegm3Layout(event) {
+        this.setState({
+            phlegm3Layout: event.nativeEvent.layout
+        })
+    },
+    setPhlegm4Layout(event) {
+        this.setState({
+            phlegm4Layout: event.nativeEvent.layout
+        })
+    },
+
+    isPhlegm1(gesture) {
+        var dz = this.state.phlegm1Layout;
+        return (gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height) && (gesture.moveX > dz.x && gesture.moveX < dz.x + dz.width);
+    },
+    isPhlegm2(gesture) {
+        var dz = this.state.phlegm2Layout;
+        return (gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height) && (gesture.moveX > dz.x && gesture.moveX < dz.x + dz.width);
+    },
+    isPhlegm3(gesture) {
+        var dz = this.state.phlegm3Layout;
+        return (gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height) && (gesture.moveX > dz.x && gesture.moveX < dz.x + dz.width);
+    },
+    isPhlegm4(gesture) {
+        var dz = this.state.phlegm4Layout;
+        return (gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height) && (gesture.moveX > dz.x && gesture.moveX < dz.x + dz.width);
     },
 
     render() {
@@ -141,18 +209,30 @@ var CoughKids = React.createClass({
                         </View>
                     </View>
 
-                    <View style={styles.phlegm1Container}>
+                    {this.state.phlegm1 && <View
+                        onLayout={this.setPhlegm1Layout}
+                        style={styles.phlegm1Container}
+                    >
                         <Image source={phlegm1} style={styles.phlegm1}></Image>
-                    </View>
-                    <View style={styles.phlegm2Container}>
+                    </View>}
+                    {this.state.phlegm2 && <View
+                        onLayout={this.setPhlegm2Layout}
+                        style={styles.phlegm2Container}
+                    >
                         <Image source={phlegm2} style={styles.phlegm2}></Image>
-                    </View>
-                    <View style={styles.phlegm3Container}>
+                    </View>}
+                    {this.state.phlegm3 && <View
+                        onLayout={this.setPhlegm3Layout}
+                        style={styles.phlegm3Container}
+                    >
                         <Image source={phlegm3} style={styles.phlegm3}></Image>
-                    </View>
-                    <View style={styles.phlegm4Container}>
+                    </View>}
+                    {this.state.phlegm4 && <View
+                        onLayout={this.setPhlegm4Layout}
+                        style={styles.phlegm4Container}
+                    >
                         <Image source={phlegm4} style={styles.phlegm4}></Image>
-                    </View>
+                    </View>}
 
                     {this.state.instruction && <Animated.View style={[styles.instructionContainer, { opacity: this.state.fadeAnim }]}>
                         <Text style={styles.instruction}>Drag the Robikids box around</Text>
