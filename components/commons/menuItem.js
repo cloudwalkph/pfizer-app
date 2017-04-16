@@ -1,6 +1,7 @@
 var React = require('react');
 
 var {
+    Animated,
     Dimensions,
     Image,
     StyleSheet,
@@ -40,7 +41,7 @@ var MenuItem = React.createClass({
                     style={{ flex: 1 }}
                     onPress={() => this._onPress(this.state.nav)}
                 >
-                    <View style={styles.menuItem}>
+                    <Animated.View style={styles.menuItem}>
                         <Image
                             source={this.state.icon}
                             style={styles.img}
@@ -52,7 +53,7 @@ var MenuItem = React.createClass({
                         >
                             {this.state.label.toUpperCase()}
                         </Text>
-                    </View>
+                    </Animated.View>
                 </TouchableOpacity>
             </View>
         )

@@ -16,7 +16,7 @@ var Health = React.createClass({
         return {
             health: [
                 {
-                    nav: 'pain',
+                    nav: 'advil',
                     icon: require('../../assets/img/pain_icon.png'),
                     label: 'pain'
                 },
@@ -26,7 +26,7 @@ var Health = React.createClass({
                     label: 'cough'
                 },
                 {
-                    nav: 'flu',
+                    nav: 'advil',
                     icon: require('../../assets/img/flu_icon.png'),
                     label: 'flu / fever'
                 },

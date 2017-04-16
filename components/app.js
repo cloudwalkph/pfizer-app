@@ -28,15 +28,14 @@ import Wellness from './wellness';
 import Health from './health';
 import Pedia from './pedia';
 
-import Pain from './health/pain';
-import PainInteract from './health/pain/painInteract';
-import PainRecommends from './health/pain/recommends';
+import Advil from './health/advil';
+import AdvilGame from './health/advil/game';
+import AdvilRecommend from './health/advil/recommend';
+import AdvilCapsule from './health/advil/capsule';
 
 import CoughKids from './pedia/cough';
 import CoughKidsRecommend from './pedia/cough/recommend';
 import Robikids from './pedia/cough/robikids';
-
-import Advil from './advil';
 
 // var PfizerApp = React.createClass({
 
@@ -130,11 +129,10 @@ const PfizerApp = StackNavigator(
       }
     },
 
-    pain: { screen: Pain },
-    painInteract: { screen: PainInteract },
-    painRecommends: { screen: PainRecommends },
-
     advil: { screen: Advil },
+    advilGame: { screen: AdvilGame },
+    advilRecommend: { screen: AdvilRecommend },
+    advilCapsule: { screen: AdvilCapsule },
 
     coughKids: { screen: CoughKids },
     coughKidsRecommend: { screen: CoughKidsRecommend },

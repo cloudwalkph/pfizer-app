@@ -16,7 +16,7 @@ var advil_capsule_gray = require('../../../assets/img/advil_capsule_1.png');
 
 var pain_count = 0;
 
-var PainInteract = React.createClass({
+var AdvilGame = React.createClass({
 
     getInitialState() {
         return {
@@ -75,7 +75,7 @@ var PainInteract = React.createClass({
             });
         }
         if (this.state.pain_count >= 5) {
-            navigate('painRecommends');
+            navigate('advilRecommend');
         }
     },
 
@@ -214,4 +214,4 @@ var styles = StyleSheet.create({
     },
 })
 
-module.exports = PainInteract;
+module.exports = AdvilGame;

@@ -11,7 +11,7 @@ var {
 
 var pain_points = require('./img/painpoints.jpg');
 
-var Pain = React.createClass({
+var Advil = React.createClass({
 
     getInitialState() {
         return {
@@ -86,7 +86,7 @@ var Pain = React.createClass({
                     </View>
                     <View style={styles.actionContainer}>
                         <Animated.View style={[styles.blueButtonContainer, { opacity: this.state.blueButton }]}>
-                            <TouchableOpacity onPress={() => navigate('painInteract')} >
+                            <TouchableOpacity onPress={() => navigate('advilGame')} >
                                 <Image
                                     source={require('../../../assets/img/blue_button.png')}
                                     style={styles.blueButton}
@@ -171,4 +171,4 @@ var styles = StyleSheet.create({
     },
 })
 
-module.exports = Pain;
+module.exports = Advil;

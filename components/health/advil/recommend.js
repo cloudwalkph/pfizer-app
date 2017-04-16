@@ -1,5 +1,6 @@
 var React = require('react');
 var {
+    Animated,
     Dimensions,
     Image,
     StyleSheet,
@@ -8,23 +9,25 @@ var {
     TouchableOpacity,
     View,
 } = require('react-native');
-var { Next } = require('../commons/buttons');
+var { Recommend } = require('../../commons/buttons');
 
-var bgAdvil = require('../../assets/img/advil.jpg');
+var bgPainRecommend = require('../../../assets/img/pain_recommends.jpg');
 
-var Advil = React.createClass({
+var AdvilRecommend = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Image
-                    source={bgAdvil}
+                    source={bgPainRecommend}
                     style={styles.backgroundImage}
                 >
-                    <View style={styles.next}>
-                        <TouchableOpacity>
-                            <Next></Next>
+                    <View style={styles.recommend}>
+                        <TouchableOpacity
+                            onPress={() => navigate('advilCapsule')}
+                        >
+                            <Recommend></Recommend>
                         </TouchableOpacity>
                     </View>
                 </Image>
@@ -44,9 +47,9 @@ var styles = StyleSheet.create({
         height: height - 80,
         width: width,
     },
-    next: {
-        top: 750,
+    recommend: {
+        top: 630
     }
 })
 
-module.exports = Advil;
+module.exports = AdvilRecommend;
