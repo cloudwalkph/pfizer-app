@@ -18,17 +18,17 @@ const menuItems = [
     {
         nav: 'wellness',
         icon: wellness_icon,
-        label: 'Wellness'
+        label: 'wellness'.toUpperCase()
     },
     {
         nav: 'health',
         icon: health_icon,
-        label: 'Health'
+        label: 'health'.toUpperCase()
     },
     {
         nav: 'pedia',
         icon: pedia_icon,
-        label: 'Pedia'
+        label: 'pedia'.toUpperCase()
     },
 ];
 
@@ -76,10 +76,6 @@ var styles = StyleSheet.create({
         flex: 1,
         height: height - 80,
         width: width,
-    },
-    flexRow: {
-        flex: 1,
-        flexDirection: 'row',
     },
 });
 

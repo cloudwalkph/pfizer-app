@@ -1,12 +1,11 @@
 var React = require('react');
 
 var {
-    Animated,
     Dimensions,
     Image,
     StyleSheet,
     Text,
-    TouchableOpacity,
+    TouchableWithoutFeedback,
     View,
 } = require('react-native');
 
@@ -17,14 +16,16 @@ var MenuItem = React.createClass({
             nav: '',
             icon: '',
             label: '',
+            menuBGColor: 'rgba(149,149,149,0.7)',
         }
     },
 
-    getInitialState(){
+    getInitialState() {
         return {
             nav: this.props.nav,
             icon: this.props.icon,
             label: this.props.label,
+            menuBGColor: this.props.menuBGColor,
         }
     },
 
@@ -37,11 +38,18 @@ var MenuItem = React.createClass({
             <View
                 style={styles.flexRow}
             >
-                <TouchableOpacity
+                <TouchableWithoutFeedback
                     style={{ flex: 1 }}
                     onPress={() => this._onPress(this.state.nav)}
+                    onPressIn={() => this.setState({ menuBGColor: 'rgba(37,181,233,0.7)' })}
+                    onPressOut={() => this.setState({ menuBGColor: this.props.menuBGColor })}
                 >
-                    <Animated.View style={styles.menuItem}>
+                    <View
+                        style={[
+                            styles.menuItem,
+                            { backgroundColor: this.state.menuBGColor }
+                        ]}
+                    >
                         <Image
                             source={this.state.icon}
                             style={styles.img}
@@ -51,10 +59,10 @@ var MenuItem = React.createClass({
                         <Text
                             style={styles.menuLabel}
                         >
-                            {this.state.label.toUpperCase()}
+                            {this.state.label}
                         </Text>
-                    </Animated.View>
-                </TouchableOpacity>
+                    </View>
+                </TouchableWithoutFeedback >
             </View>
         )
     }
