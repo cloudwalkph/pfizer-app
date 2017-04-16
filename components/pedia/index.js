@@ -22,7 +22,7 @@ var Pedia = React.createClass({
                     label: 'appetite & immunity'.toUpperCase()
                 },
                 {
-                    nav: 'coughKids',
+                    nav: 'robikids',
                     icon: require('../../assets/img/cough_icon.png'),
                     label: 'cough relief'.toUpperCase()
                 },

@@ -22,7 +22,7 @@ var phlegm2 = require('./img/phlegm2.png');
 var phlegm3 = require('./img/phlegm3.png');
 var phlegm4 = require('./img/phlegm4.png');
 
-var CoughKids = React.createClass({
+var Robikids = React.createClass({
 
     _panResponder: {},
     _previousLeft: 0,
@@ -250,7 +250,9 @@ var CoughKids = React.createClass({
                     </Animated.View>}
 
                     {this.state.next && <View style={styles.nextContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigate('robikidsRecommend')}
+                        >
                             <Text style={styles.next}>Next ></Text>
                         </TouchableOpacity>
                     </View>}
@@ -374,4 +376,4 @@ var styles = StyleSheet.create({
     }
 })
 
-module.exports = CoughKids;
+module.exports = Robikids;

@@ -33,9 +33,9 @@ import AdvilGame from './health/advil/game';
 import AdvilRecommend from './health/advil/recommend';
 import AdvilCapsule from './health/advil/capsule';
 
-import CoughKids from './pedia/cough';
-import CoughKidsRecommend from './pedia/cough/recommend';
-import Robikids from './pedia/cough/robikids';
+import Robikids from './pedia/robikids';
+import RobikidsRecommend from './pedia/robikids/recommend';
+import RobikidsMedicine from './pedia/robikids/medicine';
 
 // var PfizerApp = React.createClass({
 
@@ -134,9 +134,9 @@ const PfizerApp = StackNavigator(
     advilRecommend: { screen: AdvilRecommend },
     advilCapsule: { screen: AdvilCapsule },
 
-    coughKids: { screen: CoughKids },
-    coughKidsRecommend: { screen: CoughKidsRecommend },
     robikids: { screen: Robikids },
+    robikidsRecommend: { screen: RobikidsRecommend },
+    robikidsMedicine: { screen: RobikidsMedicine },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },

@@ -12,7 +12,7 @@ var { Next } = require('../../commons/buttons');
 
 var rk4 = require('./img/rk4.jpg');
 
-var Robikids = React.createClass({
+var RobikidsMedicine = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
@@ -49,4 +49,4 @@ var styles = StyleSheet.create({
     }
 })
 
-module.exports = Robikids;
+module.exports = RobikidsMedicine;

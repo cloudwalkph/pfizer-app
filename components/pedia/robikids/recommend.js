@@ -8,11 +8,12 @@ var {
     TouchableOpacity,
     View,
 } = require('react-native');
-var { Next } = require('../../commons/buttons');
+
+var { Recommend } = require('../../commons/buttons');
 
 var rk3 = require('./img/rk3.jpg');
 
-var CoughKidsRecommend = React.createClass({
+var RobikidsRecommend = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
@@ -22,6 +23,13 @@ var CoughKidsRecommend = React.createClass({
                     source={rk3}
                     style={styles.backgroundImage}
                 >
+                    <View style={styles.recommend}>
+                        <TouchableOpacity
+                            onPress={() => navigate('robikidsMedicine')}
+                        >
+                            <Recommend></Recommend>
+                        </TouchableOpacity>
+                    </View>
                 </Image>
             </View>
         )
@@ -39,6 +47,9 @@ var styles = StyleSheet.create({
         height: height - 80,
         width: width,
     },
+    recommend: {
+        top: 700,
+    },
 })
 
-module.exports = CoughKidsRecommend;
+module.exports = RobikidsRecommend;
