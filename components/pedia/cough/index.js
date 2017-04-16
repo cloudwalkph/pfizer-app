@@ -32,7 +32,9 @@ var CoughKids = React.createClass({
 
     getInitialState() {
         return {
+            rkBG: rk1,
             fadeAnim: new Animated.Value(0),
+            scale: new Animated.Value(1),
             instruction: false,
             next: false,
             robibox: false,
@@ -84,13 +86,17 @@ var CoughKids = React.createClass({
     },
 
     _highlight: function () {
-        // this._robiboxStyles.style.boxShadow = 'blue';
-        // this._updateNativeStyles();
+        Animated.spring(
+            this.state.scale,
+            { toValue: 1.1, friction: 3 }
+        ).start();
     },
 
     _unHighlight: function () {
-        // this._robiboxStyles.style.backgroundColor = 'green';
-        // this._updateNativeStyles();
+        Animated.spring(
+            this.state.scale,
+            { toValue: 1, friction: 3 }
+        ).start();
     },
 
     _updateNativeStyles: function () {
@@ -108,7 +114,7 @@ var CoughKids = React.createClass({
     },
 
     _handlePanResponderGrant: function (e, gestureState) {
-        // this._highlight();
+        this._highlight();
     },
     _handlePanResponderMove: function (e, gestureState) {
         this._robiboxStyles.style.left = this._previousLeft + gestureState.dx;
@@ -131,14 +137,18 @@ var CoughKids = React.createClass({
             this.setState({
                 phlegm4: false
             })
-        } else {
+        }
+
+        if (this.state.phlegm1 == false && this.state.phlegm2 == false && this.state.phlegm3 == false && this.state.phlegm4 == false) {
             this.setState({
-                next: true
+                rkBG: rk2,
+                next: true,
+                robibox: false
             })
         }
     },
     _handlePanResponderEnd: function (e, gestureState) {
-        // this._unHighlight();
+        this._unHighlight();
         this._previousLeft += gestureState.dx;
         this._previousTop += gestureState.dy;
     },
@@ -186,7 +196,7 @@ var CoughKids = React.createClass({
         return (
             <View style={styles.container} >
                 <Image
-                    source={rk1}
+                    source={this.state.rkBG}
                     style={styles.backgroundImage}
                 >
                     <View style={styles.flexRow}>
@@ -250,8 +260,9 @@ var CoughKids = React.createClass({
                         ref={(box) => {
                             this.box = box;
                         }}
-                        style={[
+                        style={[,
                             styles.robiboxContainer,
+                            { transform: [{ scale: this.state.scale }] },
                             { opacity: this.state.fadeAnim, backgroundColor: 'red' },
                         ]}
                     >
