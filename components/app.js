@@ -37,38 +37,11 @@ import Robikids from './pedia/robikids';
 import RobikidsRecommend from './pedia/robikids/recommend';
 import RobikidsMedicine from './pedia/robikids/medicine';
 
-// var PfizerApp = React.createClass({
-
-//   getInitialState: function () {
-//     return {
-//       componentSelected: 'home'
-//     }
-//   },
-
-//   changeComponent: function (component) {
-//     this.setState({
-//       componentSelected: component
-//     })
-//   },
-
-//   renderComponent: function (component) {
-//     if (component == 'home') {
-//       return <Home changeComponent={this.changeComponent} />
-//     } else if (component == 'sample') {
-//       return <Sample changeComponent={this.changeComponent} />
-//     }
-//   },
-
-//   render() {
-//     return this.renderComponent(this.state.componentSelected);
-//   }
-// });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   }
-// });
+import { AdvilSuspension1, AdvilSuspension2 } from './pedia/advil';
+import { Clusivol, ClusivolRecommend, ClusivolMedicine } from './pedia/clusivol';
+import { Dimetapp1, Dimetapp2 } from './pedia/dimetapp';
+import { Incremin1, Incremin2 } from './pedia/incremin';
+import { Loviscol1, Loviscol2 } from './pedia/loviscol';
 
 const PfizerApp = StackNavigator(
   {
@@ -134,6 +107,17 @@ const PfizerApp = StackNavigator(
     advilRecommend: { screen: AdvilRecommend },
     advilCapsule: { screen: AdvilCapsule },
 
+    advilSuspensionRecommend: { screen: AdvilSuspension1 },
+    advilSuspensionMedicine: { screen: AdvilSuspension2 },
+    clusivol: { screen: Clusivol },
+    clusivolRecommend: { screen: ClusivolRecommend },
+    clusivolMedicine: { screen: ClusivolMedicine },
+    dimetappRecommend: { screen: Dimetapp1 },
+    dimetappMedicine: { screen: Dimetapp2 },
+    increminRecommend: { screen: Incremin1 },
+    increminMedicine: { screen: Incremin2 },
+    loviscolRecommend: { screen: Loviscol1 },
+    loviscolMedicine: { screen: Loviscol2 },
     robikids: { screen: Robikids },
     robikidsRecommend: { screen: RobikidsRecommend },
     robikidsMedicine: { screen: RobikidsMedicine },

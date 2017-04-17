@@ -17,27 +17,32 @@ var Pedia = React.createClass({
         return {
             pedia: [
                 {
-                    nav: '',
+                    name: 'appetite',
+                    nav: 'clusivol',
                     icon: require('../../assets/img/multivitamins.png'),
                     label: 'appetite & immunity'.toUpperCase()
                 },
                 {
+                    name: 'coughkids',
                     nav: 'robikids',
                     icon: require('../../assets/img/cough_icon.png'),
                     label: 'cough relief'.toUpperCase()
                 },
                 {
-                    nav: '',
+                    name: 'colds',
+                    nav: 'dimetappRecommend',
                     icon: require('../../assets/img/colds_icon.png'),
                     label: 'cold relief'.toUpperCase()
                 },
                 {
-                    nav: '',
+                    name: 'antianemia',
+                    nav: 'increminRecommend',
                     icon: require('../../assets/img/pedia.png'),
                     label: 'anti-anemia'.toUpperCase()
                 },
                 {
-                    nav: '',
+                    name: 'feverkids',
+                    nav: 'advilSuspensionRecommend',
                     icon: require('../../assets/img/flu_icon.png'),
                     label: 'fever & pain relief'.toUpperCase()
                 },
