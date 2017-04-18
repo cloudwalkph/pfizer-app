@@ -7,7 +7,7 @@ import {
 	Image,
 	Dimensions
 } from 'react-native';
-import Slider from 'react-native-slider';
+import GestureView from '../../../GestureView';
 
 let centrumBackImage  = require('./img/Centrum-2.jpg');
 let centrumBackImage1  = require('./img/Centrum-1.jpg');
@@ -20,15 +20,15 @@ class CentrumHealthy extends Component {
 			imgDynamic: centrumBackImage,
 			imgTransparent: centrumBackImage1,
 			value: 0,
-			transValue: 1
+			transValue: 1,
+			direction: null, clicks: 0, distance: 0, angle: 0
 		}
 	}
 
-	onSlide = (value) => {
-		let one = 1;
+	onSlide = (distance, angle) => {
+		let one = this.state.transValue;
 		this.setState({
-			value,
-			transValue: one - value 
+			transValue: one - 0.05
 		})
 	}
 
@@ -36,20 +36,25 @@ class CentrumHealthy extends Component {
 		const { navigate } = this.props.navigation;
 		
 		return(
-			<Image source={this.state.imgDynamic} style={{height: height,width: width}}>
-				<Slider
-					style={{backgroundColor: 'red',width:450,marginLeft: 24,alignSelf: 'center',top: 300,height: 120,opacity: 1,zIndex: 9,opacity: 0}}
-					thumbStyle={{height: 120,width: 100,top:60}}
-					trackStyle={{height: 1,width: 1}}
-					value={this.state.value}
-					onValueChange={this.onSlide} />
+			
+				<Image source={this.state.imgDynamic} style={{height: height,width: width}}>
+					<Image source={this.state.imgTransparent} style={{height: height,width: width,opacity: this.state.transValue}}/>
 
-				<Image source={this.state.imgTransparent} style={{height: height,width: width,opacity: this.state.transValue,top: -120}}/>
+					<TouchableOpacity onPress={() => navigate('RecommendedCentrum')} style={{height: 60,width: width, bottom: 80,position: 'absolute',justifyContent: 'center',zIndex:3}} activeOpacity={0.7}>
+					    <Text style={{fontSize: 25,fontWeight:'bold',color: '#000',marginRight: 20,textAlign: 'center'}}>NEXT</Text>
+					</TouchableOpacity>
+					<GestureView
+						style={styles.gestureContainer}
+						onSwipeRight={(distance, angle) => this.setState({ direction: 'right', distance, angle })}
+						onSwipeLeft={(distance, angle) => this.setState({ direction: 'left' })}
+						onSwipeUp={(distance, angle) => this.setState({ direction: 'up', distance, angle })}
+						onSwipeDown={(distance, angle) => this.setState({ direction: 'down', distance, angle })}
+						onUnhandledSwipe={(distance, angle) => this.setState({ direction: 'none', distance, angle })}
+						onSwipeMoving={this.onSlide}
+						>
+					</GestureView>
+				</Image>
 
-				<TouchableOpacity onPress={() => navigate('RecommendedCentrum')} style={{height: 60,width: width, bottom: 80,position: 'absolute',justifyContent: 'center'}} activeOpacity={0.7}>
-				    <Text style={{fontSize: 25,fontWeight:'bold',color: '#000',marginRight: 20,textAlign: 'center'}}>NEXT</Text>
-				</TouchableOpacity>
-			</Image>
 		)
 	}
 }
@@ -65,6 +70,13 @@ const styles = StyleSheet.create({
 	headerText: {
 		fontSize:20,
 		fontWeight: 'bold'
+	},
+	gestureContainer: {
+		top: 1,
+		position: 'absolute',
+		zIndex: 2,
+		width: width,
+		height: height
 	}
 
 });

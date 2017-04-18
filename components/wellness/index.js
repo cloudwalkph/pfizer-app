@@ -38,7 +38,7 @@ var Wellness = React.createClass({
                     label: 'stress, beauty, & energy'.toUpperCase()
                 },
                 {
-                    nav: '',
+                    nav: 'Caltrate',
                     icon: bone_health,
                     label: 'bone health'.toUpperCase()
                 },
