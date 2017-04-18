@@ -62,6 +62,7 @@ var Wellness = React.createClass({
                     <View style={styles.rowItem}>
                         <TouchableOpacity
                             style={{ flex: 1 }}
+                            onPress={() => navigate('Caltrate')}
                         >
                             <View style={styles.menuItem}>
                                 <Image 

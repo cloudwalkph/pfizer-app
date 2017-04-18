@@ -19,6 +19,9 @@ import RecommendStresstabs from './wellness/stress_beauty_energy/RecommendStress
 import Centrum from './wellness/multivitamins/Centrum';
 import CentrumHealthy from './wellness/multivitamins/Centrum/CentrumHealthy';
 import RecommendedCentrum from './wellness/multivitamins/Centrum/RecommendedCentrum';
+import Caltrate from './wellness/bone_health/Caltrate';
+import RecommendCaltrate from './wellness/bone_health/Caltrate/RecommendCaltrate';
+import CaltrateAnimation from './wellness/bone_health/Caltrate/CaltrateAnimation';
 
 import Wellness from './wellness';
 import Health from './health';
@@ -29,6 +32,7 @@ import PainInteract from './health/pain/painInteract';
 import PainRecommends from './health/pain/recommends';
 
 import Advil from './advil';
+import GestureViewExample from './GestureViewExample';
 
 // var PfizerApp = React.createClass({
 
@@ -118,7 +122,11 @@ const PfizerApp = StackNavigator(
     RecommendStresstabs: { screen: RecommendStresstabs },
     Centrum: { screen: Centrum },
     CentrumHealthy: { screen: CentrumHealthy },
-    RecommendedCentrum: { screen: RecommendedCentrum }
+    RecommendedCentrum: { screen: RecommendedCentrum },
+    GestureViewExample: { screen: GestureViewExample },
+    Caltrate: { screen: Caltrate },
+    RecommendCaltrate: { screen: RecommendCaltrate },
+    CaltrateAnimation: { screen: CaltrateAnimation }
   }
 );
 

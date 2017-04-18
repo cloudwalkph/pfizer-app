@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-let robi2 = require('./img/Centrum-3.jpg');
-let robi3 = require('./img/Centrum-4.jpg');
+let img1 = require('./img/Caltrate-3.jpg');
+let img2 = require('./img/Caltrate-4.jpg');
 let { height, width } = Dimensions.get('window');
 
-class RecommendedCentrum extends Component{
+class RecommendCaltrate extends Component {
 	constructor(props) {
 		super(props)
 	}
@@ -21,19 +21,18 @@ class RecommendedCentrum extends Component{
 	render() {
 		return(
 			<Swiper style={styles.wrapper} height={height} horizontal={true}>
-				<Image source={robi2} style={styles.flex1,{height: height - 80,width: width}}>
+				<Image source={img1} style={styles.flex1,{height: height - 80,width: width}}>
 					<TouchableOpacity style={styles.recommendButton} activeOpacity={0.7}>
 						<Text style={styles.recommendText}>NEXT</Text>
 					</TouchableOpacity>
 				</Image>
-				<Image source={robi3} style={styles.flex1,{height: height - 80,width: width}}>
+				<Image source={img2} style={styles.flex1,{height: height - 80,width: width}}>
 					
 				</Image>
 			</Swiper>
 		)
 	}
 }
-
 
 const styles = StyleSheet.create({
 	flex1: {
@@ -53,11 +52,7 @@ const styles = StyleSheet.create({
 	recommendText: {
 		alignSelf: 'center',
 		fontSize: 20
-	},
-	backgroundImage: {
-		height: height,
-		width: width
 	}
 });
 
-export default RecommendedCentrum;
+export default RecommendCaltrate;
