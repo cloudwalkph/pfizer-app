@@ -7,6 +7,7 @@ var {
     TouchableOpacity,
     View,
 } = require('react-native');
+var { MenuItem } = require('./commons/menuItem');
 
 var bg_menu = require('../assets/img/bg_menu.jpg'),
     wellness_icon = require('../assets/img/wellness.png'),
@@ -15,17 +16,17 @@ var bg_menu = require('../assets/img/bg_menu.jpg'),
 
 const menuItems = [
     {
-        name: 'wellness',
+        nav: 'wellness',
         icon: wellness_icon,
         label: 'Wellness'
     },
     {
-        name: 'health',
+        nav: 'health',
         icon: health_icon,
         label: 'Health'
     },
     {
-        name: 'pedia',
+        nav: 'pedia',
         icon: pedia_icon,
         label: 'Pedia'
     },
@@ -33,8 +34,13 @@ const menuItems = [
 
 var Menu = React.createClass({
 
-    render() {
+    _onPress(val) {
         const { navigate } = this.props.navigation;
+        navigate(val);
+    },
+
+    render() {
+        
         return (
             <View style={styles.container}>
                 <Image
@@ -43,22 +49,13 @@ var Menu = React.createClass({
                 >
                     {menuItems.map(function (v, i) {
                         return (
-                            <View key={i} style={styles.rowItem}>
-                                <TouchableOpacity
-                                    key={i}
-                                    onPress={() => navigate(v.name)}
-                                    style={{ flex: 1 }}
-                                >
-                                    <View style={styles.menuItem}>
-                                        <Image
-                                            source={v.icon}
-                                            style={styles.img}
-                                        >
-                                        </Image>
-                                        <Text style={styles.menuLabel}>{v.label.toUpperCase()}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                            <MenuItem 
+                                key={i}
+                                onPress={this._onPress}
+                                nav={v.nav}
+                                icon={v.icon}
+                                label={v.label}
+                            />
                         )
                     }.bind(this))}
                 </Image>
@@ -77,32 +74,13 @@ var styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    rowItem: {
-        flex: 1,
-        flexDirection: 'row',
+        height: height - 80,
         width: width,
     },
-    menuItem: {
+    flexRow: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(149,149,149,0.7)',
-        margin: 5,
-        borderRadius: 10,
+        flexDirection: 'row',
     },
-    img: {
-        height: height / 6,
-        resizeMode: 'contain',
-    },
-    menuLabel: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 40,
-        fontWeight: 'bold'
-    }
 });
 
 module.exports = Menu;

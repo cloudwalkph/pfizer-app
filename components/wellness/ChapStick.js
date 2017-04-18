@@ -38,7 +38,7 @@ class ChapStick extends Component {
 					<Text style={{fontWeight: 'bold',textAlign: 'center',fontSize: 17}}>Exposure to the sun and weather takes moisture away from your lips causing it to dry.</Text>
 					<Text style={{fontWeight: 'bold',textAlign: 'center',fontSize: 17}}>Dryness leads to chapped lips</Text>
 				</View>
-				<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{alignSelf: 'center',backgroundColor: '#25b5e9',width: 100,height: 100,postition: 'absolute',top: 300}}>
+				<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{alignSelf: 'center',backgroundColor: '#25b5e9',width: 100,height: 100,position: 'absolute',top: 300}}>
 					<Image
 						style={{width:70,height:70,alignSelf: 'center',marginTop: 14}}
 						source={bulbButton}

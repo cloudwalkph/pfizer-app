@@ -1,10 +1,14 @@
 import React from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
+
+import { BackArrow } from './commons/back_arrow';
+import { BurgerMenu } from './commons/burgerMenu';
 
 import Home from './home';
 import CustomerAgeGender from './CustomerAgeGender';
@@ -31,8 +35,11 @@ import Pain from './health/pain';
 import PainInteract from './health/pain/painInteract';
 import PainRecommends from './health/pain/recommends';
 
+import CoughKids from './pedia/cough';
+import CoughKidsRecommend from './pedia/cough/recommend';
+import Robikids from './pedia/cough/robikids';
+
 import Advil from './advil';
-import GestureViewExample from './GestureViewExample';
 
 // var PfizerApp = React.createClass({
 
@@ -69,7 +76,6 @@ import GestureViewExample from './GestureViewExample';
 
 const PfizerApp = StackNavigator(
   {
-
     home: {
       screen: Home,
       navigationOptions: {
@@ -80,8 +86,28 @@ const PfizerApp = StackNavigator(
     },
     customerAgeGender: {
       screen: CustomerAgeGender,
+      navigationOptions: {
+        header: {
+          left: <BackArrow />,
+          right: <BurgerMenu />,
+          tintColor: 'white',
+          style: {
+            backgroundColor: '#25b5e9'
+          }
+        }
+      }
     },
-    menu: { screen: Menu },
+    menu: {
+      screen: Menu,
+      navigationOptions: {
+        header: {
+          tintColor: 'white',
+          style: {
+            backgroundColor: '#25b5e9'
+          }
+        }
+      }
+    },
     wellness: {
       screen: Wellness,
       navigationOptions: {
@@ -110,8 +136,12 @@ const PfizerApp = StackNavigator(
     pain: { screen: Pain },
     painInteract: { screen: PainInteract },
     painRecommends: { screen: PainRecommends },
-    
+
     advil: { screen: Advil },
+
+    coughKids: { screen: CoughKids },
+    coughKidsRecommend: { screen: CoughKidsRecommend },
+    robikids: { screen: Robikids },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },
@@ -122,8 +152,8 @@ const PfizerApp = StackNavigator(
     RecommendStresstabs: { screen: RecommendStresstabs },
     Centrum: { screen: Centrum },
     CentrumHealthy: { screen: CentrumHealthy },
+
     RecommendedCentrum: { screen: RecommendedCentrum },
-    GestureViewExample: { screen: GestureViewExample },
     Caltrate: { screen: Caltrate },
     RecommendCaltrate: { screen: RecommendCaltrate },
     CaltrateAnimation: { screen: CaltrateAnimation }
