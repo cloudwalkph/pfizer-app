@@ -15,9 +15,9 @@ export default class Home extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.bg}>
-                    <Image 
-                        source={require('../assets/img/bg.jpg')} 
-                        style={styles.backgroundImage} 
+                    <Image
+                        source={require('../assets/img/bg.jpg')}
+                        style={styles.backgroundImage}
                     >
                         <View style={styles.logoContainer}>
                             <Image
@@ -28,12 +28,20 @@ export default class Home extends Component {
                         </View>
                     </Image>
                 </View>
-                <View style={styles.whiteBar}>
-                    
+                <View
+                    style={styles.beginBtnContainer}
+                >
+                    <TouchableOpacity
+                        onPress={() => navigate('customerAgeGender')}
+                    >
+                        <Image
+                            source={require('../assets/img/bg_button.jpg')}
+                            style={styles.beginBtn}
+                        >
+                            <Text style={styles.beginBtnLabel}>BEGIN ></Text>
+                        </Image>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={() => navigate('customerAgeGender')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
-                    <Text style={{fontWeight:'bold',color: '#fff'}}>BEGIN ></Text>
-                </TouchableOpacity>
             </View>
         );
     }
@@ -51,24 +59,32 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
     },
     logoContainer: {
-        flex: 1, 
-        alignItems: 'center', 
-        justifyContent: 'center'
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     logo: {
-        height: 400,
-        width: 400,
+        width: 250,
+        resizeMode: 'contain'
     },
     whiteBar: {
         flex: 2,
     },
-    beginBar: {
-        alignItems: 'center',
-        backgroundColor: '#25b5e9',
+    beginBtnContainer: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center'
     },
+    beginBtn: {
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    beginBtnLabel: {
+        fontSize: 25,
+        color: '#fff'
+    }
 });

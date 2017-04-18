@@ -46,6 +46,8 @@ import { Dimetapp1, Dimetapp2 } from './pedia/dimetapp';
 import { Incremin1, Incremin2 } from './pedia/incremin';
 import { Loviscol1, Loviscol2 } from './pedia/loviscol';
 
+var CustomerDetails = require('./customer_details');
+
 const PfizerApp = StackNavigator(
   {
     home: {
@@ -138,7 +140,9 @@ const PfizerApp = StackNavigator(
     RecommendedCentrum: { screen: RecommendedCentrum },
     Caltrate: { screen: Caltrate },
     RecommendCaltrate: { screen: RecommendCaltrate },
-    CaltrateAnimation: { screen: CaltrateAnimation }
+    CaltrateAnimation: { screen: CaltrateAnimation },
+
+    CustomerDetails: { screen: CustomerDetails },
   }
 );
 
