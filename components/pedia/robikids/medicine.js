@@ -7,28 +7,50 @@ var {
     TouchableNativeFeedback,
     TouchableOpacity,
     View,
+    ViewPagerAndroid,
 } = require('react-native');
-var { Next } = require('../../commons/buttons');
 
+var { Recommend, Next } = require('../../commons/buttons');
+
+var rk3 = require('./img/rk3.jpg');
 var rk4 = require('./img/rk4.jpg');
 
-var RobikidsMedicine = React.createClass({
+var Robikids1 = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Image
-                    source={rk4}
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.next}>
-                        <TouchableOpacity>
-                            <Next></Next>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
+            <ViewPagerAndroid style={styles.container} initialPage={0}>
+                <View style={[styles.container]}>
+                    <Image
+                        source={rk3}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.recommend}>
+                            <TouchableOpacity
+                                onPress={() => navigate('robikidsMedicine')}
+                            >
+                                <Recommend></Recommend>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+                <View style={styles.container}>
+                    <Image
+                        source={rk4}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.next}>
+                            <TouchableOpacity
+                                onPress={() => navigate('CustomerDetails')}
+                            >
+                                <Next></Next>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+            </ViewPagerAndroid>
+
         )
     }
 });
@@ -44,9 +66,12 @@ var styles = StyleSheet.create({
         height: height - 80,
         width: width,
     },
+    recommend: {
+        top: 700,
+    },
     next: {
         top: 750,
     }
 })
 
-module.exports = RobikidsMedicine;
+module.exports = Robikids1;

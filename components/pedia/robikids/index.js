@@ -14,7 +14,8 @@ var { Next } = require('../../commons/buttons');
 
 var rk1 = require('./img/rk1.jpg');
 var rk2 = require('./img/rk2.jpg');
-var idea = require('../../../assets/img/idea-copy.png');
+var gray_button = require('../../../assets/img/gray_button.png');
+var blue_button = require('../../../assets/img/blue_button.png');
 var robibox = require('./img/robikid.png');
 
 var phlegm1 = require('./img/phlegm1.png');
@@ -25,16 +26,20 @@ var phlegm4 = require('./img/phlegm4.png');
 var Robikids = React.createClass({
 
     _panResponder: {},
-    _previousLeft: 0,
-    _previousTop: 0,
-    _circleStyles: {},
+    _previousLeft: 500,
+    _previousTop: 600,
     box: null,
 
     getInitialState() {
         return {
             rkBG: rk1,
+            actionButton: gray_button,
             fadeAnim: new Animated.Value(0),
             scale: new Animated.Value(1),
+            pan: new Animated.ValueXY({
+                x: this._previousLeft,
+                y: this._previousTop,
+            }),
             instruction: false,
             next: false,
             robibox: false,
@@ -46,6 +51,7 @@ var Robikids = React.createClass({
             phlegm2Layout: null,
             phlegm3Layout: null,
             phlegm4Layout: null,
+            instructionText: ['Drag the Robikids box around \n', 'the lungs to eliminate the phlegm.']
         }
     },
 
@@ -58,22 +64,15 @@ var Robikids = React.createClass({
             onPanResponderRelease: this._handlePanResponderEnd,
             onPanResponderTerminate: this._handlePanResponderEnd,
         });
-        this._previousLeft = 500;
-        this._previousTop = 600;
-        this._robiboxStyles = {
-            style: {
-                left: this._previousLeft,
-                top: this._previousTop,
-            }
-        };
     },
 
     componentDidMount() {
-        this._updateNativeStyles();
+        // this._updateNativeStyles();
     },
 
     _gameOn() {
         this.setState({
+            actionButton: blue_button,
             instruction: true,
             robibox: true,
         });
@@ -86,21 +85,21 @@ var Robikids = React.createClass({
     },
 
     _highlight: function () {
-        Animated.spring(
+        Animated.timing(
             this.state.scale,
             { toValue: 1.1, friction: 3 }
         ).start();
     },
 
     _unHighlight: function () {
-        Animated.spring(
+        Animated.timing(
             this.state.scale,
             { toValue: 1, friction: 3 }
         ).start();
     },
 
     _updateNativeStyles: function () {
-        this.box && this.box.setNativeProps(this._robiboxStyles);
+        // this.box && this.box.setNativeProps(this._robiboxStyles);
     },
 
     _handleStartShouldSetPanResponder: function (e, gestureState) {
@@ -117,9 +116,12 @@ var Robikids = React.createClass({
         this._highlight();
     },
     _handlePanResponderMove: function (e, gestureState) {
-        this._robiboxStyles.style.left = this._previousLeft + gestureState.dx;
-        this._robiboxStyles.style.top = this._previousTop + gestureState.dy;
-        this._updateNativeStyles();
+        this.state.pan.setValue(
+            {
+                x: this._previousLeft + gestureState.dx,
+                y: this._previousTop + gestureState.dy,
+            }
+        )
 
         if (this.isPhlegm1(gestureState)) {
             this.setState({
@@ -143,14 +145,24 @@ var Robikids = React.createClass({
             this.setState({
                 rkBG: rk2,
                 next: true,
-                robibox: false
+                robibox: false,
+                instructionText: [
+                    'Robitussin stops cough and removes \n',
+                    'phlegm while soothing your throat \n',
+                    'with menthol.'
+                ]
             })
         }
     },
     _handlePanResponderEnd: function (e, gestureState) {
         this._unHighlight();
-        this._previousLeft += gestureState.dx;
-        this._previousTop += gestureState.dy;
+        // this._previousLeft += gestureState.dx;
+        // this._previousTop += gestureState.dy;
+
+        Animated.spring(
+            this.state.pan,
+            { toValue: { x: 500, y: 600 } }
+        ).start();
     },
 
     setPhlegm1Layout(event) {
@@ -206,52 +218,53 @@ var Robikids = React.createClass({
                             >
                                 <Image
                                     resizeMode="contain"
-                                    source={idea}
+                                    source={this.state.actionButton}
                                     style={styles.ideaImg}
                                 />
                             </TouchableOpacity>
                         </View>
                         <View style={styles.header}>
                             <Text style={styles.headerText}>WHAT CAUSES COUGH?</Text>
-                            <Text>Respiratory diseases are usually caused by viral or</Text>
-                            <Text>bacterial infections. Phlegm fills up the air passages</Text>
-                            <Text>that causes coughing.</Text>
+                            <Text style={styles.headerContent}>{[
+                                'Respiratory diseases are usually caused by viral or \n',
+                                'bacterial infections. Phlegm fills up the air passages \n',
+                                'that causes coughing. \n',
+                            ]}</Text>
                         </View>
                     </View>
 
                     {this.state.phlegm1 && <View
                         onLayout={this.setPhlegm1Layout}
-                        style={styles.phlegm1Container}
+                        style={[styles.phlegm1Container]}
                     >
-                        <Image source={phlegm1} style={styles.phlegm1}></Image>
+                        <Animated.Image source={phlegm1} style={[styles.phlegm, { opacity: this.state.fadeAnim }]}></Animated.Image>
                     </View>}
                     {this.state.phlegm2 && <View
                         onLayout={this.setPhlegm2Layout}
-                        style={styles.phlegm2Container}
+                        style={[styles.phlegm2Container]}
                     >
-                        <Image source={phlegm2} style={styles.phlegm2}></Image>
+                        <Animated.Image source={phlegm2} style={[styles.phlegm, { opacity: this.state.fadeAnim }]}></Animated.Image>
                     </View>}
                     {this.state.phlegm3 && <View
                         onLayout={this.setPhlegm3Layout}
-                        style={styles.phlegm3Container}
+                        style={[styles.phlegm3Container]}
                     >
-                        <Image source={phlegm3} style={styles.phlegm3}></Image>
+                        <Animated.Image source={phlegm3} style={[styles.phlegm, { opacity: this.state.fadeAnim }]}></Animated.Image>
                     </View>}
                     {this.state.phlegm4 && <View
                         onLayout={this.setPhlegm4Layout}
-                        style={styles.phlegm4Container}
+                        style={[styles.phlegm4Container]}
                     >
-                        <Image source={phlegm4} style={styles.phlegm4}></Image>
+                        <Animated.Image source={phlegm4} style={[styles.phlegm, { opacity: this.state.fadeAnim }]}></Animated.Image>
                     </View>}
 
                     {this.state.instruction && <Animated.View style={[styles.instructionContainer, { opacity: this.state.fadeAnim }]}>
-                        <Text style={styles.instruction}>Drag the Robikids box around</Text>
-                        <Text style={styles.instruction}>the lungs to eliminate the phlegm.</Text>
+                        <Text style={styles.instruction}>{this.state.instructionText}</Text>
                     </Animated.View>}
 
                     {this.state.next && <View style={styles.nextContainer}>
                         <TouchableOpacity
-                            onPress={() => navigate('robikidsRecommend')}
+                            onPress={() => navigate('robikidsMedicine')}
                         >
                             <Text style={styles.next}>Next ></Text>
                         </TouchableOpacity>
@@ -262,17 +275,18 @@ var Robikids = React.createClass({
                         ref={(box) => {
                             this.box = box;
                         }}
-                        style={[,
+                        style={[
+                            this.state.pan.getLayout(),
                             styles.robiboxContainer,
                             { transform: [{ scale: this.state.scale }] },
                             { opacity: this.state.fadeAnim, backgroundColor: 'red' },
                         ]}
                     >
-                        <Animated.Image
+                        <Image
                             source={robibox}
                             style={[styles.robibox]}
                         >
-                        </Animated.Image>
+                        </Image>
                     </Animated.View>
 
                 </Image>
@@ -299,7 +313,8 @@ var styles = StyleSheet.create({
     },
     idea: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     ideaImg: {
         width: 70,
@@ -311,41 +326,33 @@ var styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
+    headerContent: {
+        fontSize: 15
+    },
+    phlegm: {
+        height: 100,
+        width: 100,
+        resizeMode: 'contain',
+    },
     phlegm1Container: {
         position: 'absolute',
-        top: 260,
-        left: 250,
-    },
-    phlegm1: {
-        width: 50,
-        resizeMode: 'contain',
+        top: 400,
+        left: 220,
     },
     phlegm2Container: {
         position: 'absolute',
-        top: 380,
+        top: 500,
         left: 200,
-    },
-    phlegm2: {
-        width: 50,
-        resizeMode: 'contain',
     },
     phlegm3Container: {
         position: 'absolute',
-        top: 310,
-        left: 310,
-    },
-    phlegm3: {
-        width: 50,
-        resizeMode: 'contain',
+        top: 400,
+        left: 300,
     },
     phlegm4Container: {
         position: 'absolute',
-        top: 400,
-        left: 310,
-    },
-    phlegm4: {
-        width: 50,
-        resizeMode: 'contain',
+        top: 500,
+        left: 300,
     },
     instructionContainer: {
         position: 'absolute',
@@ -353,7 +360,6 @@ var styles = StyleSheet.create({
         left: 50,
     },
     instruction: {
-        width: 390,
         fontSize: 20,
         color: 'white'
     },

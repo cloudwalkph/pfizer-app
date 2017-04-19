@@ -75,7 +75,7 @@ var AdvilGame = React.createClass({
             });
         }
         if (this.state.pain_count >= 5) {
-            navigate('advilRecommend');
+            navigate('advilMedicine');
         }
     },
 

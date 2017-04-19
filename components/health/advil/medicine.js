@@ -13,10 +13,10 @@ var {
 
 var { Recommend, Next } = require('../../commons/buttons');
 
-var bgRecommend = require('./img/advilkids.jpg');
-var bgMedicine = require('./img/advilkids2.jpg');
+var bgPainRecommend = require('../../../assets/img/pain_recommends.jpg');
+var bgAdvil = require('../../../assets/img/advil.jpg');
 
-var AdvilSuspension1 = React.createClass({
+var AdvilMedicine = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
@@ -24,12 +24,12 @@ var AdvilSuspension1 = React.createClass({
             <ViewPagerAndroid style={styles.container} initialPage={0}>
                 <View>
                     <Image
-                        source={bgRecommend}
+                        source={bgPainRecommend}
                         style={styles.backgroundImage}
                     >
                         <View style={styles.recommend}>
                             <TouchableOpacity
-                                onPress={() => navigate('advilSuspensionMedicine')}
+                                onPress={() => navigate('advilMedicine')}
                             >
                                 <Recommend></Recommend>
                             </TouchableOpacity>
@@ -38,7 +38,7 @@ var AdvilSuspension1 = React.createClass({
                 </View>
                 <View>
                     <Image
-                        source={bgMedicine}
+                        source={bgAdvil}
                         style={styles.backgroundImage}
                     >
                         <View style={styles.next}>
@@ -65,14 +65,13 @@ var styles = StyleSheet.create({
         flex: 1,
         height: height - 80,
         width: width,
-        resizeMode: 'stretch'
     },
     recommend: {
-        top: 750
+        top: 630
     },
     next: {
-        top: 750
+        top: 750,
     }
 })
 
-module.exports = { AdvilSuspension1 };
+module.exports = AdvilMedicine;

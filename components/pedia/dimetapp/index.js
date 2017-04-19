@@ -8,8 +8,10 @@ var {
     TouchableNativeFeedback,
     TouchableOpacity,
     View,
+    ViewPagerAndroid,
 } = require('react-native');
-var { Recommend } = require('../../commons/buttons');
+
+var { Recommend, Next } = require('../../commons/buttons');
 
 var bgRecommend = require('./img/dimetapp.jpg');
 var bgMedicine = require('./img/dimetapp2.jpg');
@@ -19,40 +21,39 @@ var Dimetapp1 = React.createClass({
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Image
-                    source={bgRecommend}
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.recommend}>
-                        <TouchableOpacity
-                            onPress={() => navigate('dimetappMedicine')}
-                        >
-                            <Recommend></Recommend>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
+            <ViewPagerAndroid style={styles.container} initialPage={0}>
+                <View style={styles.container}>
+                    <Image
+                        source={bgRecommend}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.recommend}>
+                            <TouchableOpacity
+                                onPress={() => navigate('dimetappMedicine')}
+                            >
+                                <Recommend></Recommend>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+                <View>
+                    <Image
+                        source={bgMedicine}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.next}>
+                            <TouchableOpacity
+                                onPress={() => navigate('CustomerDetails')}
+                            >
+                                <Next></Next>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+            </ViewPagerAndroid>
         )
     }
 });
-
-var Dimetapp2 = React.createClass({
-
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={bgMedicine}
-                    style={styles.backgroundImage}
-                >
-                </Image>
-            </View>
-        )
-    }
-
-})
 
 var { height, width } = Dimensions.get('window');
 
@@ -68,7 +69,10 @@ var styles = StyleSheet.create({
     },
     recommend: {
         top: 750
+    },
+    next: {
+        top: 750
     }
 })
 
-module.exports = { Dimetapp1, Dimetapp2 };
+module.exports = { Dimetapp1 };

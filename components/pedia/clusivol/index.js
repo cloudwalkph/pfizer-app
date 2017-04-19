@@ -8,7 +8,9 @@ var {
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
+    ViewPagerAndroid,
 } = require('react-native');
+
 var { Recommend, Next } = require('../../commons/buttons');
 
 var gray_button = require('../../../assets/img/gray_button.png');
@@ -79,7 +81,7 @@ var Clusivol = React.createClass({
                         style={styles.nextPos}
                     >
                         <TouchableOpacity
-                            onPress={() => navigate('clusivolRecommend')}
+                            onPress={() => navigate('clusivolMedicine')}
                         >
                             <Text
                                 style={{ color: 'white', fontSize: 30 }}
@@ -93,47 +95,48 @@ var Clusivol = React.createClass({
 
 });
 
-var ClusivolRecommend = React.createClass({
+var bg_wall = require('../../../assets/img/bg_wall.jpg');
+
+var Clusivol1 = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Image
-                    source={bgRecommend}
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.recommend}>
-                        <TouchableOpacity
-                            onPress={() => navigate('clusivolMedicine')}
+            <ViewPagerAndroid style={styles.container} initialPage={0}>
+                <View style={styles.container}>
+                    <Image
+                        source={bg_wall}
+                        style={styles.backgroundImage}
+                    >
+                        <Image
+                            source={bgRecommend}
+                            style={styles.backgroundImage}
                         >
-                            <Recommend></Recommend>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
-        )
-    }
-
-});
-
-var ClusivolMedicine = React.createClass({
-
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={bgMedicine}
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.next}>
-                        <TouchableOpacity>
-                            <Next></Next>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
+                            <View style={styles.recommend}>
+                                <TouchableOpacity
+                                    onPress={() => navigate('clusivolMedicine')}
+                                >
+                                    <Recommend></Recommend>
+                                </TouchableOpacity>
+                            </View>
+                        </Image>
+                    </Image>
+                </View>
+                <View style={styles.container}>
+                    <Image
+                        source={bgMedicine}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.next}>
+                            <TouchableOpacity
+                                onPress={() => navigate('CustomerDetails')}
+                            >
+                                <Next></Next>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+            </ViewPagerAndroid>
         )
     }
 
@@ -173,4 +176,4 @@ var styles = StyleSheet.create({
     }
 })
 
-module.exports = { Clusivol, ClusivolRecommend, ClusivolMedicine };
+module.exports = { Clusivol, Clusivol1 };

@@ -30,19 +30,19 @@ var Pedia = React.createClass({
                 },
                 {
                     name: 'colds',
-                    nav: 'dimetappRecommend',
+                    nav: 'dimetappMedicine',
                     icon: require('../../assets/img/colds_icon.png'),
                     label: 'cold relief'.toUpperCase()
                 },
                 {
                     name: 'antianemia',
-                    nav: 'increminRecommend',
+                    nav: 'increminMedicine',
                     icon: require('../../assets/img/pedia.png'),
                     label: 'anti-anemia'.toUpperCase()
                 },
                 {
                     name: 'feverkids',
-                    nav: 'advilSuspensionRecommend',
+                    nav: 'advilSuspensionMedicine',
                     icon: require('../../assets/img/flu_icon.png'),
                     label: 'fever & pain relief'.toUpperCase()
                 },

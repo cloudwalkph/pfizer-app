@@ -31,20 +31,17 @@ import Wellness from './wellness';
 import Health from './health';
 import Pedia from './pedia';
 
-import Advil from './health/advil';
-import AdvilGame from './health/advil/game';
-import AdvilRecommend from './health/advil/recommend';
-import AdvilCapsule from './health/advil/capsule';
+var Advil = require('./health/advil');
+var AdvilGame = require('./health/advil/game');
+var AdvilMedicine = require('./health/advil/medicine');
 
-import Robikids from './pedia/robikids';
-import RobikidsRecommend from './pedia/robikids/recommend';
-import RobikidsMedicine from './pedia/robikids/medicine';
-
-import { AdvilSuspension1, AdvilSuspension2 } from './pedia/advil';
-import { Clusivol, ClusivolRecommend, ClusivolMedicine } from './pedia/clusivol';
-import { Dimetapp1, Dimetapp2 } from './pedia/dimetapp';
-import { Incremin1, Incremin2 } from './pedia/incremin';
-import { Loviscol1, Loviscol2 } from './pedia/loviscol';
+var { AdvilSuspension1 } = require('./pedia/advil');
+var { Clusivol, Clusivol1 } = require('./pedia/clusivol');
+var { Dimetapp1 } = require('./pedia/dimetapp');
+var { Incremin1 } = require('./pedia/incremin');
+var { Loviscol1 } = require('./pedia/loviscol');
+var Robikids = require('./pedia/robikids');
+var Robikids1 = require('./pedia/robikids/medicine');
 
 var CustomerDetails = require('./customer_details');
 
@@ -109,23 +106,16 @@ const PfizerApp = StackNavigator(
 
     advil: { screen: Advil },
     advilGame: { screen: AdvilGame },
-    advilRecommend: { screen: AdvilRecommend },
-    advilCapsule: { screen: AdvilCapsule },
+    advilMedicine: { screen: AdvilMedicine },
 
-    advilSuspensionRecommend: { screen: AdvilSuspension1 },
-    advilSuspensionMedicine: { screen: AdvilSuspension2 },
+    advilSuspensionMedicine: { screen: AdvilSuspension1 },
     clusivol: { screen: Clusivol },
-    clusivolRecommend: { screen: ClusivolRecommend },
-    clusivolMedicine: { screen: ClusivolMedicine },
-    dimetappRecommend: { screen: Dimetapp1 },
-    dimetappMedicine: { screen: Dimetapp2 },
-    increminRecommend: { screen: Incremin1 },
-    increminMedicine: { screen: Incremin2 },
-    loviscolRecommend: { screen: Loviscol1 },
-    loviscolMedicine: { screen: Loviscol2 },
+    clusivolMedicine: { screen: Clusivol1 },
+    dimetappMedicine: { screen: Dimetapp1 },
+    increminMedicine: { screen: Incremin1 },
+    loviscolMedicine: { screen: Loviscol1 },
     robikids: { screen: Robikids },
-    robikidsRecommend: { screen: RobikidsRecommend },
-    robikidsMedicine: { screen: RobikidsMedicine },
+    robikidsMedicine: { screen: Robikids1 },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },

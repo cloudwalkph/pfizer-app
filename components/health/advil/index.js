@@ -6,10 +6,13 @@ var {
     StyleSheet,
     Text,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     View,
 } = require('react-native');
 
 var pain_points = require('./img/painpoints.jpg');
+var gray_button = require('../../../assets/img/gray_button.png');
+var blue_button = require('../../../assets/img/blue_button.png');
 
 var Advil = React.createClass({
 
@@ -20,7 +23,8 @@ var Advil = React.createClass({
             headache: new Animated.Value(0),
             jointpain: new Animated.Value(0),
             musclepain: new Animated.Value(0),
-            blueButton: new Animated.Value(0)
+            blueButton: new Animated.Value(0),
+            actionButton: gray_button,
         }
     },
 
@@ -59,8 +63,16 @@ var Advil = React.createClass({
         ]).start();
     },
 
-    render() {
+    _onPress() {
         const { navigate } = this.props.navigation;
+        this.setState({
+            actionButton: blue_button
+        })
+        navigate('advilGame')
+    },
+
+    render() {
+        
         return (
             <View style={styles.container}>
                 <Image
@@ -86,14 +98,14 @@ var Advil = React.createClass({
                     </View>
                     <View style={styles.actionContainer}>
                         <Animated.View style={[styles.blueButtonContainer, { opacity: this.state.blueButton }]}>
-                            <TouchableOpacity onPress={() => navigate('advilGame')} >
+                            <TouchableWithoutFeedback onPress={this._onPress} >
                                 <Image
-                                    source={require('../../../assets/img/blue_button.png')}
+                                    source={this.state.actionButton}
                                     style={styles.blueButton}
                                 >
 
                                 </Image>
-                            </TouchableOpacity>
+                            </TouchableWithoutFeedback>
                         </Animated.View>
                         <Text
                             style={styles.takeAdvil}

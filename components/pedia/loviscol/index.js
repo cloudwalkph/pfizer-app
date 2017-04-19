@@ -8,8 +8,10 @@ var {
     TouchableNativeFeedback,
     TouchableOpacity,
     View,
+    ViewPagerAndroid,
 } = require('react-native');
-var { Recommend } = require('../../commons/buttons');
+
+var { Recommend, Next } = require('../../commons/buttons');
 
 var bgRecommend = require('./img/loviscol.jpg');
 var bgMedicine = require('./img/loviscol2.jpg');
@@ -19,36 +21,29 @@ var Loviscol1 = React.createClass({
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Image
-                    source={bgRecommend}
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.recommend}>
-                        <TouchableOpacity
-                            onPress={() => navigate('loviscolMedicine')}
-                        >
-                            <Recommend></Recommend>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
-        )
-    }
-});
-
-var Loviscol2 = React.createClass({
-
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={bgMedicine}
-                    style={styles.backgroundImage}
-                >
-                </Image>
-            </View>
+            <ViewPagerAndroid style={styles.container} initialPage={0}>
+                <View style={styles.container}>
+                    <Image
+                        source={bgRecommend}
+                        style={styles.backgroundImage}
+                    >
+                        <View style={styles.recommend}>
+                            <TouchableOpacity
+                                onPress={() => navigate('loviscolMedicine')}
+                            >
+                                <Recommend></Recommend>
+                            </TouchableOpacity>
+                        </View>
+                    </Image>
+                </View>
+                <View>
+                    <Image
+                        source={bgMedicine}
+                        style={styles.backgroundImage}
+                    >
+                    </Image>
+                </View>
+            </ViewPagerAndroid>
         )
     }
 });
@@ -70,4 +65,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = { Loviscol1, Loviscol2 };
+module.exports = { Loviscol1 };
