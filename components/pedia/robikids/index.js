@@ -23,11 +23,13 @@ var phlegm2 = require('./img/phlegm2.png');
 var phlegm3 = require('./img/phlegm3.png');
 var phlegm4 = require('./img/phlegm4.png');
 
+var { height, width } = Dimensions.get('window');
+
 var Robikids = React.createClass({
 
     _panResponder: {},
-    _previousLeft: 500,
-    _previousTop: 600,
+    _previousLeft: height / 1.826,
+    _previousTop: width / 1,
     box: null,
 
     getInitialState() {
@@ -85,14 +87,14 @@ var Robikids = React.createClass({
     },
 
     _highlight: function () {
-        Animated.timing(
+        Animated.spring(
             this.state.scale,
-            { toValue: 1.1, friction: 3 }
+            { toValue: 1.2, friction: 3 }
         ).start();
     },
 
     _unHighlight: function () {
-        Animated.timing(
+        Animated.spring(
             this.state.scale,
             { toValue: 1, friction: 3 }
         ).start();
@@ -161,7 +163,10 @@ var Robikids = React.createClass({
 
         Animated.spring(
             this.state.pan,
-            { toValue: { x: 500, y: 600 } }
+            {
+                toValue: { x: 500, y: 600 },
+                friction: 6
+            }
         ).start();
     },
 
@@ -205,6 +210,12 @@ var Robikids = React.createClass({
 
     render() {
         const { navigate } = this.props.navigation;
+
+        var [translateX, translateY] = [this.state.pan.x, this.state.pan.y];
+        var rotate = this.state.pan.x.interpolate({ inputRange: [-300, 500, 700], outputRange: ["-30deg", "0deg", "30deg"] });
+		let scale = this.state.scale;
+
+        var animateBoxStyles = { transform: [{ translateX }, { translateY }, { rotate }, { scale }] };
         return (
             <View style={styles.container} >
                 <Image
@@ -276,9 +287,8 @@ var Robikids = React.createClass({
                             this.box = box;
                         }}
                         style={[
-                            this.state.pan.getLayout(),
+                            animateBoxStyles,
                             styles.robiboxContainer,
-                            { transform: [{ scale: this.state.scale }] },
                             { opacity: this.state.fadeAnim, backgroundColor: 'red' },
                         ]}
                     >
@@ -295,8 +305,6 @@ var Robikids = React.createClass({
         )
     }
 });
-
-var { height, width } = Dimensions.get('window');
 
 var styles = StyleSheet.create({
     container: {
@@ -336,8 +344,8 @@ var styles = StyleSheet.create({
     },
     phlegm1Container: {
         position: 'absolute',
-        top: 400,
-        left: 220,
+        top: height / 2.2,
+        left: width / 2.72,
     },
     phlegm2Container: {
         position: 'absolute',

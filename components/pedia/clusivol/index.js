@@ -33,7 +33,11 @@ var Clusivol = React.createClass({
     getInitialState() {
         return {
             ideaButton: gray_button,
-            bgImage: this.props.bgImage
+            bgImage: this.props.bgImage,
+            pan: new Animated.ValueXY({
+                x: 240,
+                y: 10
+            })
         }
     },
 
@@ -42,6 +46,13 @@ var Clusivol = React.createClass({
             bgImage: bg2,
             ideaButton: blue_button
         });
+        Animated.spring(
+            this.state.pan,
+            {toValue: {
+                x: 500,
+                y: 10
+            }}
+        ).start()
     },
 
     render() {
@@ -62,8 +73,8 @@ var Clusivol = React.createClass({
                             ></Image>
                         </TouchableWithoutFeedback>
                     </View>
-                    <View
-                        style={styles.nega}
+                    <Animated.View
+                        style={[styles.nega, this.state.pan.getLayout()]}
                     >
                         <Image
                             source={nega}
@@ -76,7 +87,7 @@ var Clusivol = React.createClass({
                         >
 
                         </Image>
-                    </View>
+                    </Animated.View>
                     <View
                         style={styles.nextPos}
                     >
@@ -163,9 +174,7 @@ var styles = StyleSheet.create({
         top: 750
     },
     nega: {
-        left: 240,
-        top: 10,
-        position: 'absolute'
+        position: 'absolute',
     },
     nextPos: {
         top: 700,
