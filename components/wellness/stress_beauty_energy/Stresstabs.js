@@ -5,6 +5,8 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	Image,
+	Animated,
+	PanResponder,
 	Dimensions
 } from 'react-native';
 
@@ -22,8 +24,31 @@ class Stresstabs extends Component {
 		this.state = {
 			imgDynamic:stresstabImg,
 			imgOpacity: 1,
-			contentToShow: 0
+			contentToShow: 0,
+			pan: new Animated.ValueXY()
 		}
+
+		this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder    : () => true,
+            /*onPanResponderMove              : Animated.event([null,{
+                dx  : this.state.pan.x,
+                dy  : this.state.pan.y
+            }]),*/
+            onPanResponderMove              : this.handleResponderMove,
+
+            onPanResponderRelease           : (e, gesture) => {
+            	let gX = gesture.dx;
+            	let gY = gesture.dy;
+
+                this.state.pan.setValue({x:gX,y:gY});
+            },
+            onPanResponderGrant	: (e, gesture) => { // on beginning touch
+            	
+            	gesture.dx = this.previousLeft;
+            	gesture.dy = this.previousTop;
+            	
+            }
+        });
 	}
 
 	onPressBulb() {
@@ -40,7 +65,7 @@ class Stresstabs extends Component {
 		return(
 			<Image source={this.state.imgDynamic} style={[styles.flex1,{height: height - 80,width: width}]}>
 				<Image source={pagod} style={{width: 220,height: 150,position: 'absolute',right: 50,top: 10,opacity:this.state.imgOpacity}}></Image>
-				<Image source={puyat} style={{width: 220,height: 150,position: 'absolute',left: 50,opacity:this.state.imgOpacity}}></Image>
+				<Image source={puyat} style={{width: 220,height: 150,position: 'absolute',left: 50,top: 10,opacity:this.state.imgOpacity}}></Image>
 				<Image source={pressure} style={{width: 220,height: 170,position: 'absolute',left: 60,top: 200,opacity:this.state.imgOpacity}}></Image>
 				<View style={[styles.flex1,styles.flexDirectionRow,{top: 400}]}>
 					<View style={{width:120,marginRight: 10,marginLeft: 100}}>
