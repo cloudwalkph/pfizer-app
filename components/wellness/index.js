@@ -4,13 +4,10 @@ var {
     Image,
     StyleSheet,
     Text,
-    TouchableOpacity,
+    TouchableWithoutFeedback,
     View,
-    StyleSheet,
-    Dimensions,
-    Image,
-    TouchableOpacity
 } = require('react-native');
+var { MenuItem } = require('../commons/menuItem');
 
 var bg_menu = require('../../assets/img/bg.jpg');
 var multivitamins = require('../../assets/img/multivitamins.png');
@@ -18,77 +15,73 @@ var stress_beauty_energy = require('../../assets/img/stress_beauty_energy.png');
 var bone_health = require('../../assets/img/bone_health.png');
 var chapped_lips = require('../../assets/img/chapped_lips.png');
 
+const menuItems = [
+
+];
+
 var Wellness = React.createClass({
-    render() {
+
+    getDefaultProps() {
+        return {
+            wellness: [
+                {
+                    nav: 'CentrumHealthy',
+                    icon: multivitamins,
+                    label: <Text>
+                        <Text style={{ fontSize: 20 }}>{'age-adjusted\n'.toUpperCase()}</Text>
+                        <Text>{'multivitamins'.toUpperCase()}</Text>
+                    </Text>,
+                },
+                {
+                    nav: 'Stresstabs',
+                    icon: stress_beauty_energy,
+                    label: 'stress, beauty, & energy'.toUpperCase()
+                },
+                {
+                    nav: 'Caltrate',
+                    icon: bone_health,
+                    label: 'bone health'.toUpperCase()
+                },
+                {
+                    nav: 'ChapStick',
+                    icon: chapped_lips,
+                    label: 'chapped lips'.toUpperCase()
+                },
+            ]
+        }
+    },
+
+    getInitialState() {
+        return {
+            menuBGColor: 'rgba(149,149,149,0.7)',
+        }
+    },
+
+    _onPress(val) {
         const { navigate } = this.props.navigation;
-        
+        navigate(val);
+    },
+
+    render() {
         return (
             <View style={styles.container}>
                 <Image
                     source={bg_menu}
                     style={styles.backgroundImage}
                 >
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                            onPress={() => navigate('CentrumHealthy')}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image 
-                                    source={multivitamins}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel, {fontSize: 20}]}>AGE-ADJUSTED</Text>
-                                <Text style={[styles.menuLabel]}>MULTIVITAMINS</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                            onPress={() => navigate('Stresstabs')}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image 
-                                    source={stress_beauty_energy}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>STRESS, BEAUTY &amp; ENERGY</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                            onPress={() => navigate('Caltrate')}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image 
-                                    source={bone_health}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>BONE HEALTH</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.rowItem}>
-                        <TouchableOpacity
-                            style={{ flex: 1 }}
-                            onPress={() => navigate('ChapStick')}
-                        >
-                            <View style={styles.menuItem}>
-                                <Image 
-                                    source={chapped_lips}
-                                    style={styles.img}
-                                >
-                                </Image>
-                                <Text style={[styles.menuLabel]}>CHAPPED LIPS</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+
+                    {this.props.wellness.map(function (v, i) {
+                        return (
+                            <MenuItem
+                                key={i}
+                                onPress={this._onPress}
+                                nav={v.nav}
+                                icon={v.icon}
+                                label={v.label}
+                            />
+                        )
+                    }.bind(this))}
+
                 </Image>
             </View>
         )
@@ -105,32 +98,9 @@ var styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    rowItem: {
-        flex: 1,
-        flexDirection: 'row',
+        height: height - 80,
         width: width,
     },
-    menuItem: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(149,149,149,0.7)',
-        margin: 5,
-        borderRadius: 10,
-    },
-    img: {
-        height: height / 8,
-        resizeMode: 'contain',
-    },
-    menuLabel: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 30,
-        fontWeight: 'bold'
-    }
 });
 
 module.exports = Wellness;

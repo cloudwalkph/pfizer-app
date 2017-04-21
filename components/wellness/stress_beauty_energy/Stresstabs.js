@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableOpacity,
-	Image,
 	Animated,
+	Dimensions,
+	Image,
 	PanResponder,
-	Dimensions
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
+	View
 } from 'react-native';
+var clamp = require('clamp');
 
+var { Next } = require('../../commons/buttons');
+
+var gray_button = require('../../../assets/img/gray_button.png');
+var blue_button = require('../../../assets/img/blue_button.png');
 let stresstabImg = require('./img/Stresstabs.jpg');
 let stresstabImg2 = require('./img/Stresstabs-2.jpg');
 let pagod = require('./img/pAGOD.png');
@@ -17,15 +23,37 @@ let pressure = require('./img/Pressure.png');
 let puyat = require('./img/Puyat.png');
 let { height, width } = Dimensions.get('window');
 
+let SWIPE_THRESHOLD = 400;
+
 class Stresstabs extends Component {
 	constructor(props) {
 		super(props)
 
+		this.prevPagodX = 380;
+		this.prevPagodY = 10;
+		this.prevPuyatX = 40;
+		this.prevPuyatY = 0;
+		this.prevPressureX = 100;
+		this.prevPressureY = 200;
+
 		this.state = {
-			imgDynamic:stresstabImg,
-			imgOpacity: 1,
-			contentToShow: 0,
-			pan: new Animated.ValueXY()
+			actionButton: gray_button,
+			imgDynamic: stresstabImg,
+			imgOpacity: 0,
+			contentToShow: 'Puyat, Pagod and Pressure leads to stress that shows in your face',
+			panPagod: new Animated.ValueXY({
+				x: this.prevPagodX,
+				y: this.prevPagodY,
+			}),
+			panPuyat: new Animated.ValueXY({
+				x: this.prevPuyatX,
+				y: this.prevPuyatY,
+			}),
+			panPressure: new Animated.ValueXY({
+				x: this.prevPressureX,
+				y: this.prevPressureY,
+			}),
+			enter: new Animated.Value(0.5)
 		}
 
 		this.panResponder = PanResponder.create({
@@ -51,45 +79,192 @@ class Stresstabs extends Component {
         });
 	}
 
-	onPressBulb() {
+	componentWillMount() {
+		this.panPagodResponder = PanResponder.create({
+			onStartShouldSetPanResponder: () => true,
+			onMoveShouldSetResponderCapture: () => true,
+			onMoveShouldSetPanResponderCapture: () => true,
+			onPanResponderGrant: (evt, gesture) => {
+				this.state.panPagod.setOffset({ x: this.state.panPagod.x._value, y: this.state.panPagod.y._value });
+				this.state.panPagod.setValue({ x: this.prevPagodX, y: this.prevPagodY });
+			},
+			onPanResponderMove: Animated.event([null, {
+				dx: this.state.panPagod.x,
+				dy: this.state.panPagod.y,
+			}]),
+			onPanResponderRelease: (e, { vx, vy }) => {
+				this.state.panPagod.flattenOffset();
+				var velocity;
+
+				if (vx >= 0) {
+					velocity = clamp(vx, 3, 5);
+				} else if (vx < 0) {
+					velocity = clamp(vx * -1, 3, 5) * -1;
+				}
+
+				if (0 > this.state.panPagod.x._value || Math.abs(this.state.panPressure.x._value) > SWIPE_THRESHOLD) {
+					Animated.decay(this.state.panPagod, {
+						velocity: { x: velocity, y: vy },
+						deceleration: 0.997
+					}).start()
+				} else {
+					Animated.spring(this.state.panPagod, {
+						toValue: { x: this.prevPagodX, y: this.prevPagodY },
+						friction: 4
+					}).start()
+				}
+			}
+		});
+		this.panPuyatResponder = PanResponder.create({
+			onStartShouldSetPanResponder: () => true,
+			onMoveShouldSetResponderCapture: () => true,
+			onMoveShouldSetPanResponderCapture: () => true,
+			onPanResponderGrant: (evt, gesture) => {
+				this.state.panPuyat.setOffset({ x: this.state.panPuyat.x._value, y: this.state.panPuyat.y._value });
+				this.state.panPuyat.setValue({ x: this.prevPuyatX, y: this.prevPuyatY });
+			},
+			onPanResponderMove: Animated.event([null, {
+				dx: this.state.panPuyat.x,
+				dy: this.state.panPuyat.y,
+			}]),
+			onPanResponderRelease: (e, { vx, vy }) => {
+				this.state.panPuyat.flattenOffset();
+				var velocity;
+
+				if (vx >= 0) {
+					velocity = clamp(vx, 3, 5);
+				} else if (vx < 0) {
+					velocity = clamp(vx * -1, 3, 5) * -1;
+				}
+
+				if (0 > this.state.panPuyat.x._value || Math.abs(this.state.panPuyat.x._value) > SWIPE_THRESHOLD) {
+					Animated.decay(this.state.panPuyat, {
+						velocity: { x: velocity, y: vy },
+						deceleration: 0.997
+					}).start()
+				} else {
+					Animated.spring(this.state.panPuyat, {
+						toValue: { x: this.prevPuyatX, y: this.prevPuyatY },
+						friction: 4
+					}).start()
+				}
+			}
+		});
+		this.panPressureResponder = PanResponder.create({
+			onStartShouldSetPanResponder: () => true,
+			onMoveShouldSetResponderCapture: () => true,
+			onMoveShouldSetPanResponderCapture: () => true,
+			onPanResponderGrant: (evt, gesture) => {
+				this.state.panPressure.setOffset({ x: this.state.panPressure.x._value, y: this.state.panPressure.y._value });
+				this.state.panPressure.setValue({ x: this.prevPressureX, y: this.prevPressureY });
+			},
+			onPanResponderMove: Animated.event([null, {
+				dx: this.state.panPressure.x,
+				dy: this.state.panPressure.y,
+			}]),
+			onPanResponderRelease: (e, { vx, vy }) => {
+				this.state.panPressure.flattenOffset();
+				var velocity;
+
+				if (vx >= 0) {
+					velocity = clamp(vx, 3, 5);
+				} else if (vx < 0) {
+					velocity = clamp(vx * -1, 3, 5) * -1;
+				}
+
+				if (0 > this.state.panPressure.x._value || Math.abs(this.state.panPressure.x._value) > SWIPE_THRESHOLD) {
+					Animated.decay(this.state.panPressure, {
+						velocity: { x: velocity, y: vy },
+						deceleration: 0.997
+					}).start()
+				} else {
+					Animated.spring(this.state.panPressure, {
+						toValue: { x: this.prevPressureX, y: this.prevPressureY },
+						friction: 4
+					}).start()
+				}
+			}
+		});
+	}
+
+	_animateEntrance() {
+		Animated.spring(
+			this.state.enter,
+			{ toValue: 1, friction: 8 }
+		).start();
+	}
+
+	_onPressBulb() {
 		this.setState({
-			imgOpacity: 0,
+			actionButton: blue_button,
+			imgOpacity: 1,
+		});
+		this._animateEntrance();
+	}
+
+	_resetState() {
+		this.setState({
 			imgDynamic: stresstabImg2,
-			contentToShow: 1
+			contentToShow: 'Fight stress with proper exercise, a healthy diet and Stresstabs.',
 		});
 	}
 
 	render() {
 		const { navigate } = this.props.navigation;
+		let { panPagod, panPuyat, panPressure, enter, } = this.state;
 
-		return(
-			<Image source={this.state.imgDynamic} style={[styles.flex1,{height: height - 80,width: width}]}>
-				<Image source={pagod} style={{width: 220,height: 150,position: 'absolute',right: 50,top: 10,opacity:this.state.imgOpacity}}></Image>
-				<Image source={puyat} style={{width: 220,height: 150,position: 'absolute',left: 50,top: 10,opacity:this.state.imgOpacity}}></Image>
-				<Image source={pressure} style={{width: 220,height: 170,position: 'absolute',left: 60,top: 200,opacity:this.state.imgOpacity}}></Image>
-				<View style={[styles.flex1,styles.flexDirectionRow,{top: 400}]}>
-					<View style={{width:120,marginRight: 10,marginLeft: 100}}>
-						<TouchableOpacity onPress={this.onPressBulb.bind(this)} activeOpacity={0.7} style={{justifyContent: 'center',alignItems: 'center',padding:10,backgroundColor: '#25b5e9'}}>
+		let rotate = panPagod.x.interpolate({ inputRange: [-180, 380, 500], outputRange: ["-30deg", "0deg", "30deg"] });
+		let scale = enter;
+		let animatedPagodStyles = { transform: [{ translateX: panPagod.x }, { translateY: panPagod.y }, { rotate }, { scale }] };
+
+		let animatedPuyatStyles = { transform: [{ translateX: panPuyat.x }, { translateY: panPuyat.y }, { rotate }, { scale }] };
+		let animatedPressureStyles = { transform: [{ translateX: panPressure.x }, { translateY: panPressure.y }, { rotate }, { scale }] };
+
+
+		return (
+			<Image source={this.state.imgDynamic} style={styles.backgroundImage}>
+				<View style={{ flex: 7 }}>
+					<Animated.View
+						{...this.panPagodResponder.panHandlers}
+						style={[{ position: 'absolute' }, animatedPagodStyles]}
+					>
+						<Image source={pagod} style={[styles.pagod, { opacity: this.state.imgOpacity }]}></Image>
+					</Animated.View>
+					<Animated.View
+						{...this.panPuyatResponder.panHandlers}
+						style={[{ position: 'absolute' }, animatedPuyatStyles]}
+					>
+						<Image source={puyat} style={[styles.puyat, { opacity: this.state.imgOpacity }]}></Image>
+					</Animated.View>
+					<Animated.View
+						{...this.panPressureResponder.panHandlers}
+						style={[{ position: 'absolute' }, animatedPressureStyles]}
+					>
+						<Image source={pressure} style={[styles.pressure, { opacity: this.state.imgOpacity }]}></Image>
+					</Animated.View>
+				</View>
+				<View style={{ flex: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+					<View>
+						<TouchableWithoutFeedback onPress={this._onPressBulb.bind(this)}>
 							<Image
-								style={{width:70,height:70}}
-								source={require('../../Illness/Cough/img/light_bulb.png')}
+								source={this.state.actionButton}
 							/>
-						</TouchableOpacity>
+						</TouchableWithoutFeedback>
 					</View>
-					<View style={{width:500,marginLeft: 10,marginTop: 25}}>
+					<View>
 						<Text style={styles.headerText}>TAKE STRESSTABS</Text>
 					</View>
-					
 				</View>
 
-				<View style={{width:390,alignSelf:'center',bottom: 130}}>
-					<Text style={[styles.contentText,{opacity: this.state.imgOpacity}]}>Puyat, Pagod and Pressure leads to stress that shows in your face</Text>
-					<Text style={[styles.contentText,{opacity: this.state.contentToShow}]}>Fight stress with proper exercise, a healthy diet and Stresstabs.</Text>
+				<View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+					<Text style={[{ width: 350 }, styles.contentText]}>{this.state.contentToShow}</Text>
 				</View>
 
-				<TouchableOpacity onPress={() => navigate('RecommendStresstabs')} style={{height: 60,backgroundColor: 'red',justifyContent:'center'}} activeOpacity={0.7}>
-				    <Text style={{fontWeight:'bold',color: '#fff',marginRight: 20,textAlign:'center'}}>NEXT</Text>
-				</TouchableOpacity>
+				<View style={{ flex: 3 }}>
+					<TouchableOpacity onPress={() => navigate('RecommendStresstabs')}>
+						<Next></Next>
+					</TouchableOpacity>
+				</View>
 			</Image>
 		)
 	}
@@ -103,13 +278,32 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginTop: 20
 	},
+	backgroundImage: {
+		height: height - 80,
+		width: width,
+	},
 	headerText: {
-		fontSize:26,
+		fontSize: 35,
 		fontWeight: 'bold'
 	},
 	contentText: {
-		fontSize:20,
-		textAlign:'center'
+		fontSize: 20,
+		textAlign: 'center'
+	},
+	pagod: {
+		width: 200,
+		height: 200,
+		resizeMode: 'contain',
+	},
+	puyat: {
+		width: 200,
+		height: 200,
+		resizeMode: 'contain',
+	},
+	pressure: {
+		width: 200,
+		height: 200,
+		resizeMode: 'contain',
 	}
 
 });

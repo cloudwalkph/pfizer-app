@@ -55,7 +55,7 @@ var { height, width } = Dimensions.get('window');
 var styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     flexRow: {
         flexDirection: 'row',
@@ -63,7 +63,8 @@ var styles = StyleSheet.create({
     },
     recommend_button: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: 300,
     },
     check: {
         flex: 2,

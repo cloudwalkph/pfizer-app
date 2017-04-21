@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	Image
 } from 'react-native';
+var { Next } = require('./commons/buttons');
 
 class CustomerAgeGender extends Component {
 	constructor(props) {
@@ -22,15 +23,15 @@ class CustomerAgeGender extends Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-			<Image source={require('../imageSrc/bg.jpg')} style={styles.flex1,{height: 830,width: 600}}>
-				<Text style={styles.flex1,styles.customer1}>CUSTOMER 1</Text>
-				<Text style={styles.flex1,styles.ageHeader}>AGE</Text>
+			<Image source={require('../imageSrc/bg.jpg')} style={[styles.flex1,{height: 830,width: 600}]}>
+				<Text style={[styles.flex1,styles.customer1]}>CUSTOMER 1</Text>
+				<Text style={[styles.flex1,styles.ageHeader]}>AGE</Text>
 					<TextInput
 						style={{alignSelf: 'center',height: 40,borderWidth: 1, width: 50}}
 						keyboardType='numeric'
 				        onChangeText={(text) => this.setState({text})}
 				        value={this.state.text} />
-				<Text style={styles.flex1,styles.genderHeader}>GENDER</Text>
+				<Text style={[styles.flex1,styles.genderHeader]}>GENDER</Text>
 				<View style={{flex: 1, flexDirection: 'row',alignSelf: 'center',marginTop: 20,marginBottom: 20,width: 270}}>
 					<View style={{flex:1}}>
 						<TouchableOpacity style={{ height: 70, backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center',marginRight: 2}}>
@@ -44,14 +45,14 @@ class CustomerAgeGender extends Component {
 			        </View>
 				</View>
 
-				<Text style={styles.flex1,styles.customer2}>CUSTOMER 2</Text>
-				<Text style={styles.flex1,styles.ageHeader}>AGE</Text>
+				<Text style={[styles.flex1,styles.customer2]}>CUSTOMER 2</Text>
+				<Text style={[styles.flex1,styles.ageHeader]}>AGE</Text>
 					<TextInput
 						style={{alignSelf: 'center',height: 40,borderWidth: 1, width: 50}}
 						keyboardType='numeric'
 				        onChangeText={(text2) => this.setState({text2})}
 				        value={this.state.text2} />
-				<Text style={styles.flex1,styles.genderHeader}>GENDER</Text>
+				<Text style={[styles.flex1,styles.genderHeader]}>GENDER</Text>
 				<View style={{flex: 1, flexDirection: 'row',alignSelf: 'center',marginTop: 20,marginBottom: 20,width: 270}}>
 					<View style={{flex:1}}>
 						<TouchableOpacity style={{ height: 70, backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center',marginRight: 2}}>
@@ -65,9 +66,13 @@ class CustomerAgeGender extends Component {
 			        </View>
 				</View>
 
-				<TouchableOpacity onPress={() => navigate('menu')} style={{ height: 60, marginTop: 10,backgroundColor: '#25b5e9',justifyContent: 'center',alignItems: 'center'}} activeOpacity={0.7}>
-				    <Text style={{fontWeight:'bold',color: '#fff'}}>NEXT</Text>
-				</TouchableOpacity>
+				<View
+                    style={styles.nextBtnContainer}
+                >
+					<TouchableOpacity onPress={() => navigate('menu')}>
+						<Next></Next>
+					</TouchableOpacity>
+				</View>
 			</Image>
 		) 
 	}
@@ -106,6 +111,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginTop: 10,
 		textAlign: 'center'
+	},
+	nextBtnContainer: {
+		height: 120,
+		justifyContent: 'center'
 	}
 });
 

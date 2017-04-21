@@ -31,48 +31,19 @@ import Wellness from './wellness';
 import Health from './health';
 import Pedia from './pedia';
 
-import Pain from './health/pain';
-import PainInteract from './health/pain/painInteract';
-import PainRecommends from './health/pain/recommends';
+var Advil = require('./health/advil');
+var AdvilGame = require('./health/advil/game');
+var AdvilMedicine = require('./health/advil/medicine');
 
-import CoughKids from './pedia/cough';
-import CoughKidsRecommend from './pedia/cough/recommend';
-import Robikids from './pedia/cough/robikids';
+var { AdvilSuspension1 } = require('./pedia/advil');
+var { Clusivol, Clusivol1 } = require('./pedia/clusivol');
+var { Dimetapp1 } = require('./pedia/dimetapp');
+var { Incremin1 } = require('./pedia/incremin');
+var { Loviscol1 } = require('./pedia/loviscol');
+var Robikids = require('./pedia/robikids');
+var Robikids1 = require('./pedia/robikids/medicine');
 
-import Advil from './advil';
-
-// var PfizerApp = React.createClass({
-
-//   getInitialState: function () {
-//     return {
-//       componentSelected: 'home'
-//     }
-//   },
-
-//   changeComponent: function (component) {
-//     this.setState({
-//       componentSelected: component
-//     })
-//   },
-
-//   renderComponent: function (component) {
-//     if (component == 'home') {
-//       return <Home changeComponent={this.changeComponent} />
-//     } else if (component == 'sample') {
-//       return <Sample changeComponent={this.changeComponent} />
-//     }
-//   },
-
-//   render() {
-//     return this.renderComponent(this.state.componentSelected);
-//   }
-// });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   }
-// });
+var CustomerDetails = require('./customer_details');
 
 const PfizerApp = StackNavigator(
   {
@@ -133,15 +104,18 @@ const PfizerApp = StackNavigator(
       }
     },
 
-    pain: { screen: Pain },
-    painInteract: { screen: PainInteract },
-    painRecommends: { screen: PainRecommends },
-
     advil: { screen: Advil },
+    advilGame: { screen: AdvilGame },
+    advilMedicine: { screen: AdvilMedicine },
 
-    coughKids: { screen: CoughKids },
-    coughKidsRecommend: { screen: CoughKidsRecommend },
+    advilSuspensionMedicine: { screen: AdvilSuspension1 },
+    clusivol: { screen: Clusivol },
+    clusivolMedicine: { screen: Clusivol1 },
+    dimetappMedicine: { screen: Dimetapp1 },
+    increminMedicine: { screen: Incremin1 },
+    loviscolMedicine: { screen: Loviscol1 },
     robikids: { screen: Robikids },
+    robikidsMedicine: { screen: Robikids1 },
 
     cough: { screen: Cough },
     viewport: { screen: Viewport },
@@ -156,7 +130,9 @@ const PfizerApp = StackNavigator(
     RecommendedCentrum: { screen: RecommendedCentrum },
     Caltrate: { screen: Caltrate },
     RecommendCaltrate: { screen: RecommendCaltrate },
-    CaltrateAnimation: { screen: CaltrateAnimation }
+    CaltrateAnimation: { screen: CaltrateAnimation },
+
+    CustomerDetails: { screen: CustomerDetails },
   }
 );
 

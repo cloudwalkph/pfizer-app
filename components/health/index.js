@@ -16,19 +16,19 @@ var Health = React.createClass({
         return {
             health: [
                 {
-                    nav: 'pain',
+                    nav: 'advil',
                     icon: require('../../assets/img/pain_icon.png'),
-                    label: 'pain'
+                    label: 'pain'.toUpperCase()
                 },
                 {
                     nav: 'cough',
                     icon: require('../../assets/img/cough_icon.png'),
-                    label: 'cough'
+                    label: 'cough'.toUpperCase()
                 },
                 {
-                    nav: 'flu',
+                    nav: 'advil',
                     icon: require('../../assets/img/flu_icon.png'),
-                    label: 'flu / fever'
+                    label: 'flu / fever'.toUpperCase()
                 },
             ]
         }
@@ -47,7 +47,6 @@ var Health = React.createClass({
                     source={require('../../assets/img/bg_health.jpg')}
                     style={styles.backgroundImage}
                 >
-
                     {this.props.health.map(function (v, i) {
                         return (
                             <MenuItem
@@ -76,8 +75,8 @@ var styles = StyleSheet.create({
     },
     backgroundImage: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: height - 80,
+        width: width,
     },
 });
 
