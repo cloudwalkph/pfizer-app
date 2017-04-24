@@ -20,7 +20,6 @@ class Caltrate extends Component {
 		this.state = {
 			imgDynamic: imgBackground,
 			imgDarkDynamic: imgDark,
-			value: 30,
 			opac:0
 		}
 		
@@ -28,16 +27,14 @@ class Caltrate extends Component {
 
 	componentDidMount() {
 		this.setState({
-			opac: 0,
-			value: 30
+			opac: 0
 		})
 	}
 
 	onChangeValue = (value) => {
 		let op = this.state.opac;
 		this.setState({
-			opac: op + 0.04,
-			value
+			opac: value
 		})
 	}
 
@@ -53,11 +50,11 @@ class Caltrate extends Component {
 						style={{height: 80,width: width - 200}}
 						thumbStyle={{height: 30,width: 30,top: 45,borderRadius: 50}}
 						trackStyle={{height: 10,borderRadius: 50}}
-						value={this.state.value}
-						minimumValue={30}
-						maximumValue={50}
+						value={this.state.opac}
+						minimumValue={0}
+						maximumValue={1}
 						onValueChange={this.onChangeValue}
-						onSlidingComplete={(value) => value == 50 ? navigate('CaltrateAnimation') : null} />
+						onSlidingComplete={(value) => value == 1 ? navigate('CaltrateAnimation') : null} />
 
 					<Text style={styles.ageStart}>30</Text>
 					<Text style={styles.ageEnd}>50</Text>

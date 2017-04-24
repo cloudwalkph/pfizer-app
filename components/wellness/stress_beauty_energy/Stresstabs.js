@@ -214,11 +214,14 @@ class Stresstabs extends Component {
 		let { panPagod, panPuyat, panPressure, enter, } = this.state;
 
 		let rotate = panPagod.x.interpolate({ inputRange: [-180, 380, 500], outputRange: ["-30deg", "0deg", "30deg"] });
+		let rotatepanPuyat = panPuyat.x.interpolate({ inputRange: [-160, 40, 240], outputRange: ["-30deg", "0deg", "30deg"] });
+		let rotatepanPressure = panPressure.x.interpolate({ inputRange: [-100, 100, 300], outputRange: ["-30deg", "0deg", "30deg"] });
+
 		let scale = enter;
 		let animatedPagodStyles = { transform: [{ translateX: panPagod.x }, { translateY: panPagod.y }, { rotate }, { scale }] };
 
-		let animatedPuyatStyles = { transform: [{ translateX: panPuyat.x }, { translateY: panPuyat.y }, { rotate }, { scale }] };
-		let animatedPressureStyles = { transform: [{ translateX: panPressure.x }, { translateY: panPressure.y }, { rotate }, { scale }] };
+		let animatedPuyatStyles = { transform: [{ translateX: panPuyat.x }, { translateY: panPuyat.y }, { rotate: rotatepanPuyat }, { scale }] };
+		let animatedPressureStyles = { transform: [{ translateX: panPressure.x }, { translateY: panPressure.y }, { rotate: rotatepanPressure }, { scale }] };
 
 
 		return (
